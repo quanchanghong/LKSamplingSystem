@@ -4,7 +4,7 @@
 <html>
   <head>
   	 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <title>亚翔采样分析系统</title>
      <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
      <!--  <link href="${pageContext.request.contextPath}/css/carousel.css" rel="stylesheet">-->

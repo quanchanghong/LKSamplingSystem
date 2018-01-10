@@ -51,6 +51,11 @@
 		<property name="annotatedClasses"><!-- hibernate注解模式的映射 -->
 			<list>
 				<value>cn.com.lk.pojo.User</value>
+				<value>cn.com.lk.pojo.Area</value>
+				<value>cn.com.lk.pojo.Industry</value>
+				<value>cn.com.lk.pojo.Species</value>
+				<value>cn.com.lk.pojo.Admin</value>
+				<value>cn.com.lk.pojo.AIS</value>
 			</list>
 		</property>
 	</bean> 
