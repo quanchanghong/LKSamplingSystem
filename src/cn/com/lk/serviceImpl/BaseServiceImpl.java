@@ -12,7 +12,7 @@ import cn.com.lk.pojo.Page;
 import cn.com.lk.service.BaseService;
 
 @Transactional
-@Service("baseServiceImpl")
+@Service("baseService")
 public class BaseServiceImpl<T> implements BaseService<T> {
 	
 	@Autowired
@@ -27,6 +27,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public void deleteById(Class<T> clazz, Serializable id) {
 		baseDao.deleteById(clazz, id);
+	}
+
+	@Override
+	public T getById(Class<T> clazz, Serializable id) {
+		return baseDao.getById(clazz, id);
 	}
 
 }

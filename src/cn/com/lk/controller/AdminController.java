@@ -27,8 +27,8 @@ public class AdminController {
 	@RequestMapping(value="/login")
 	public String login(Admin admin, Model model){
 		Admin a = adminService.login(1);
-		System.out.println(a);
-		return "admin/index";
+		//目前跳到ais页面
+		return "redirect:/admin/ais";
 	}
 
 }

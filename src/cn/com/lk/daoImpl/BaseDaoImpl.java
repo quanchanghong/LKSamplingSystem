@@ -21,6 +21,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	
 	protected Class<T> entityClazz;
 	
+	@SuppressWarnings("unchecked")
 	public BaseDaoImpl(){
 		Type type = getClass().getGenericSuperclass();
 		if (type instanceof ParameterizedType){
@@ -39,11 +40,13 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return this.getSessionFactory().getCurrentSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
 		return getCurrentSession().createQuery("from " + entityClazz.getSimpleName()).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Page<T> getOnePage(Class<T> clazz, Integer index, Integer max) {
 		
@@ -73,6 +76,17 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 			session.delete(t);
 		}
 		return ;
+	}
+
+	@Override
+	public T getById(Class<T> clazz, Serializable id) {
+		return this.getCurrentSession().get(clazz, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> getAllEntityByType(Class<T> claszz) {
+		return this.getCurrentSession().createQuery("from " + entityClazz.getSimpleName()).list();
 	}
 
 }

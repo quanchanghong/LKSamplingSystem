@@ -3,7 +3,6 @@ package cn.com.lk.service;
 import java.util.List;
 
 import cn.com.lk.pojo.Area;
-import cn.com.lk.pojo.Page;
 
 public interface AreaService extends BaseService<Area>{
 

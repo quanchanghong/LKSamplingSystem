@@ -21,7 +21,7 @@ public class SpeciesController {
 	public String list(Page<Species> page,Model model){
 		Page<Species> onePage = speciesService.getOnePage(Species.class, page.getCurrentPage(), page.getPageSize());
 		model.addAttribute("onePage", onePage);
-		return "admin/area";
+		return "admin/species";
 	}
 	
 	@RequestMapping(value="/delete")

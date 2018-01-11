@@ -7,7 +7,7 @@ import cn.com.lk.pojo.Species;
 import cn.com.lk.service.SpeciesService;
 
 @Transactional
-@Service("speciesServiceImpl")
+@Service("speciesService")
 public class SpeciesServiceImpl extends BaseServiceImpl<Species> implements SpeciesService {
 
 }
