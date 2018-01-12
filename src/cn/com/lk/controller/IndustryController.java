@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.service.IndustryService;
@@ -27,6 +28,17 @@ public class IndustryController {
 	@RequestMapping(value="/delete")
 	public String delete(@RequestParam String industryId){
 		industryService.deleteById(Industry.class, Integer.valueOf(industryId));
+		return "redirect:/admin/industry";
+	}
+	
+	@RequestMapping(value="/add")
+	public String add(Model model){
+		return "admin/industryEdit";
+	}
+	
+	@RequestMapping(value="/save")
+	public String save(Industry industry){
+		industryService.save(industry);
 		return "redirect:/admin/industry";
 	}
 

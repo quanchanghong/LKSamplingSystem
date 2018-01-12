@@ -3,7 +3,6 @@ package cn.com.lk.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +33,30 @@ public class AisController {
 	}
 	
 	@RequestMapping(value="/edit")
-	public String edit(@RequestParam String id) throws Exception{
+	public String edit(@RequestParam String id, Model model) throws Exception{
 		Map<String, Object> editMap = aisService.getAisEditMap(Integer.parseInt(id));
-		return null;
+		model.addAttribute("editMap", editMap);
+		return "admin/aisEdit";
 	}
-
+	
+	@RequestMapping(value="/update")
+	public String update(AIS ais){
+		aisService.update(ais);
+		return "redirect:/admin/ais";
+	}
+	
+	@RequestMapping(value="/add")
+	public String add(Model model) throws Exception{
+		Map<String, Object> addMap = aisService.getAreaIndustrySpeciesMap();
+		model.addAttribute("addMap", addMap);
+		return "admin/aisAdd";
+	}
+	
+	@RequestMapping(value="/save")
+	public String save(AIS ais, Model model){
+		@SuppressWarnings("unused")
+		Integer id = aisService.save(ais);
+		return "redirect:/admin/ais";
+	}
+	
 }

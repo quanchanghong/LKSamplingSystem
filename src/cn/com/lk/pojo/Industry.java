@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Industry {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer industryId;
 	private String industryName;
 	public Integer getIndustryId() {

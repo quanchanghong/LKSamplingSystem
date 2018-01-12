@@ -29,5 +29,16 @@ public class AreaController {
 		areaService.deleteById(Area.class, Integer.valueOf(areaId));
 		return "redirect:/admin/area";
 	}
+	
+	@RequestMapping(value="/add")
+	public String add(Model model){
+		return "admin/areaEdit";
+	}
+	
+	@RequestMapping(value="/save")
+	public String save(Area area){
+		areaService.save(area);
+		return "redirect:/admin/area";
+	}
 
 }

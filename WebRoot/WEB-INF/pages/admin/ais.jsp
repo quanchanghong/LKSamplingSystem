@@ -7,7 +7,11 @@
   </head>
   <body>
   	<div class="container">
-		<table class="table table-bordered">
+  		<div>
+  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/ais/add">添加</a>
+  		</div>
+  		<div>
+  			<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th scope="col">序号</th>
@@ -33,7 +37,7 @@
   						<td>${ais.std}</td>
   						<td>${ais.finalValue}</td>
   						
-  						<td width="20%">
+  						<td width="15%">
   							<a  class="btn btn-success " title="123" href="${pageContext.request.contextPath }/admin/ais/edit?id=${ais.id}" style="height: 30px; padding-top: 1px;">编辑</a>
   							<a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/ais/delete?id=${ais.id}"  style="height: 30px; padding-top: 1px;">删除</a>
   						</td>
@@ -41,6 +45,7 @@
   				</c:forEach>
 			</tbody>
 		</table>
+  		</div>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<c:if test="${onePage.currentPage > 1 }">

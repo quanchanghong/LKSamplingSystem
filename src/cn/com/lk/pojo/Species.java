@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Species {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer speciesId;
 	private String	speciesName;
 	public Integer getSpeciesId() {

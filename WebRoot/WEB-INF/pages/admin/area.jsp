@@ -7,6 +7,10 @@
   </head>
   <body>
   	<div class="container">
+  		<div>
+  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/area/add">添加</a>
+  		</div>
+  		<div>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -28,6 +32,7 @@
   				</c:forEach>
 			</tbody>
 		</table>
+		</div>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<c:if test="${onePage.currentPage > 1 }">

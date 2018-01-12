@@ -3,7 +3,10 @@ package cn.com.lk.daoImpl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
@@ -14,14 +17,17 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import cn.com.lk.dao.BaseDao;
+import cn.com.lk.pojo.Area;
+import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
+import cn.com.lk.pojo.Species;
 
-@Repository("baseDaoImpl")
+@SuppressWarnings("unchecked")
+@Repository("baseDao")
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	
 	protected Class<T> entityClazz;
 	
-	@SuppressWarnings("unchecked")
 	public BaseDaoImpl(){
 		Type type = getClass().getGenericSuperclass();
 		if (type instanceof ParameterizedType){
@@ -40,13 +46,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return this.getSessionFactory().getCurrentSession();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
 		return getCurrentSession().createQuery("from " + entityClazz.getSimpleName()).list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Page<T> getOnePage(Class<T> clazz, Integer index, Integer max) {
 		
@@ -83,10 +87,56 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return this.getCurrentSession().get(clazz, id);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAllEntityByType(Class<T> claszz) {
 		return this.getCurrentSession().createQuery("from " + entityClazz.getSimpleName()).list();
 	}
+
+	@Override
+	public void update(T t) {
+		this.getCurrentSession().update(t);
+	}
+	
+	@Override
+	public List<Species> getAllSpecies() throws Exception {
+		
+		return this.getCurrentSession().createQuery("from Species").list();
+	}
+
+	@Override
+	public List<Area> getAllArea() throws Exception {
+		// TODO Auto-generated method stub
+		return this.getCurrentSession().createQuery("from Area").list();
+	}
+
+	@Override
+	public List<Industry> getAllIndustry() throws Exception {
+		// TODO Auto-generated method stub
+		return this.getCurrentSession().createQuery("from Industry").list();
+	}
+
+	@Override
+	public Map<String, Object> getAreaIndustrySpeciesMap() throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<Area> areaList = this.getAllArea();
+		List<Industry> industryList = this.getAllIndustry();
+		List<Species> speciesList = this.getAllSpecies();
+		
+		map.put("areaList", areaList);
+		map.put("industryList", industryList);
+		map.put("speciesList", speciesList);
+		
+		return map;
+	}
+
+	@Override
+	public Integer save(T t) {
+		return (Integer) this.getCurrentSession().save(t);
+	}
+
+	
+
 
 }
