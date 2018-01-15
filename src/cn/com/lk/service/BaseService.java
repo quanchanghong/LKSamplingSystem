@@ -28,4 +28,6 @@ public interface BaseService<T> {
 	
 	Integer save(T t);
 	
+	void saveOrUpdate(T t);
+	
 }

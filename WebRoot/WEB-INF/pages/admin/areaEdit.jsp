@@ -13,8 +13,8 @@
 			<div class="form-group row">
 				<label for="name" class="col-sm-1 col-form-label font-weight-bold">名称</label>
 				<div class="col-sm-3">
-					<input type="hidden" class="form-control " id="areaId" name="areaId" placeholder="id"">
-					<input type="text" class="form-control " id="areaName" name="areaName" placeholder="名称">
+					<input type="hidden" class="form-control " value="${area.areaId}" id="areaId" name="areaId" placeholder="id"">
+					<input type="text" class="form-control " value="${area.areaName}" id="areaName" name="areaName" placeholder="名称">
 				</div>
 			</div>
 			

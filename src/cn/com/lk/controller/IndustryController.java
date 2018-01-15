@@ -38,8 +38,15 @@ public class IndustryController {
 	
 	@RequestMapping(value="/save")
 	public String save(Industry industry){
-		industryService.save(industry);
+		industryService.saveOrUpdate(industry);
 		return "redirect:/admin/industry";
+	}
+	
+	@RequestMapping(value="/edit")
+	public String edit(@RequestParam String industryId, Model model){
+		Industry industry = industryService.getById(Industry.class, Integer.parseInt(industryId));
+		model.addAttribute("industry", industry);
+		return "admin/industryEdit";
 	}
 
 }

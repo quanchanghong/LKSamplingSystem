@@ -69,5 +69,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		return baseDao.save(t);
 	}
 
+	@Override
+	public void saveOrUpdate(T t) {
+		baseDao.saveOrUpdate(t);
+	}
+
 
 }

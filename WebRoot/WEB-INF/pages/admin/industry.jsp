@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>区域管理</title>
+    <title>产业管理</title>
   </head>
   <body>
   	<div class="container">

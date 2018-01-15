@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>关系编辑</title>
+    <title>关系添加</title>
   </head>
   
   <body>

@@ -136,6 +136,11 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return (Integer) this.getCurrentSession().save(t);
 	}
 
+	@Override
+	public void saveOrUpdate(T t) {
+		this.getCurrentSession().saveOrUpdate(t);
+	}
+
 	
 
 

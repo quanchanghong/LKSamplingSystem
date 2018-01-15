@@ -13,8 +13,8 @@
 			<div class="form-group row">
 				<label for="name" class="col-sm-1 col-form-label font-weight-bold">产业名称</label>
 				<div class="col-sm-3">
-					<input type="hidden" class="form-control " id="industryId" name="industryId" placeholder="id"">
-					<input type="text" class="form-control " id="industryName" name="industryName" placeholder="产业名称">
+					<input type="hidden" class="form-control " value="${industry.industryId }" id="industryId" name="industryId" placeholder="id"">
+					<input type="text" class="form-control " value="${industry.industryName }" id="industryName" name="industryName" placeholder="产业名称">
 				</div>
 			</div>
 			

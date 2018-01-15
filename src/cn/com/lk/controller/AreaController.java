@@ -37,8 +37,15 @@ public class AreaController {
 	
 	@RequestMapping(value="/save")
 	public String save(Area area){
-		areaService.save(area);
+		areaService.saveOrUpdate(area);
 		return "redirect:/admin/area";
+	}
+	
+	@RequestMapping(value="/edit")
+	public String edit(@RequestParam String areaId, Model model){
+		Area area = areaService.getById(Area.class, Integer.parseInt(areaId));
+		model.addAttribute("area", area);
+		return "admin/areaEdit";
 	}
 
 }

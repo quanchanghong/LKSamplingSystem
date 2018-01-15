@@ -31,4 +31,6 @@ public interface BaseDao<T> {
 	void update(T t);
 	
 	Integer save(T t);
+	
+	void saveOrUpdate(T t);
 }

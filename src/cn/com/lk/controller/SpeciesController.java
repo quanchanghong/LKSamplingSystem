@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.service.SpeciesService;
@@ -25,9 +26,27 @@ public class SpeciesController {
 	}
 	
 	@RequestMapping(value="/delete")
-	public String delete(@RequestParam String areaId){
-		speciesService.deleteById(Species.class, Integer.valueOf(areaId));
+	public String delete(@RequestParam String speciesId){
+		speciesService.deleteById(Species.class, Integer.valueOf(speciesId));
 		return "redirect:/admin/species";
+	}
+	
+	@RequestMapping(value="/add")
+	public String add(Model model){
+		return "admin/speciesEdit";
+	}
+	
+	@RequestMapping(value="/save")
+	public String save(Species species){
+		speciesService.saveOrUpdate(species);
+		return "redirect:/admin/species";
+	}
+	
+	@RequestMapping(value="/edit")
+	public String edit(@RequestParam String speciesId, Model model){
+		Species species = speciesService.getById(Species.class, Integer.parseInt(speciesId));
+		model.addAttribute("species", species);
+		return "admin/speciesEdit";
 	}
 
 }

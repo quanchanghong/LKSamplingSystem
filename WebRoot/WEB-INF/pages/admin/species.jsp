@@ -3,10 +3,14 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>区域管理</title>
+    <title>物种管理</title>
   </head>
   <body>
   	<div class="container">
+  		<div>
+  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/species/add">添加</a>
+  		</div>
+  		<div>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -21,13 +25,14 @@
   						<th scope="row">${status.count + (onePage.currentPage - 1)*onePage.pageSize}</th>
   						<td>${species.speciesName}</td>
   						<td width="20%">
-  							<a  class="btn btn-success "  href="${pageContext.request.contextPath }/admin/species/edit?areaId=${species.speciesId}" style="height: 30px; padding-top: 1px;">编辑</a>
-  							<a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/species/delete?areaId=${species.speciesId}"  style="height: 30px; padding-top: 1px;">删除</a>
+  							<a  class="btn btn-success "  href="${pageContext.request.contextPath }/admin/species/edit?speciesId=${species.speciesId}" style="height: 30px; padding-top: 1px;">编辑</a>
+  							<a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/species/delete?speciesId=${species.speciesId}"  style="height: 30px; padding-top: 1px;">删除</a>
   						</td>
   					</tr>
   				</c:forEach>
 			</tbody>
 		</table>
+		</div>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<c:if test="${onePage.currentPage > 1 }">
