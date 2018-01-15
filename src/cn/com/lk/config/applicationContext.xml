@@ -13,8 +13,10 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	
 	<import resource="springdao.xml"/>
+	
+	<import resource="spring-shiro.xml"/>
+	
 	<import resource="springservice.xml"/>
 	
 	</beans>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy> -->
+	
+	<!-- spring和filter整合配置开始 -->
+	<!-- shiro的核心管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="cacheManager" ref="cacheManager"></property> 
+		<!-- <property name="realm" ref=""></property> -->
+		<property name="sessionManager" ref="sessionManager"></property>
+	</bean>
+	
+	<!-- shiro会话管理器 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionIdUrlRewritingEnabled" value="false"/>
+    </bean>
+    
+    <!-- 缓存 -->
+     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    	<property name="cacheManagerConfigFile" value="classpath:cn/com/lk/config/ehcache.xml"></property>
+    </bean> 
+    
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+          
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+    <bean id="secureRemoteInvocationExecutor" class="org.apache.shiro.spring.remoting.SecureRemoteInvocationExecutor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+    <!-- shiro核心过滤器，id必须和web.xml中的filtername一致 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    	<property name="securityManager" ref="securityManager"></property>
+    	<property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/index.jsp"/>
+        <!-- <property name="unauthorizedUrl" value="/unauthorized"/> -->
+        <property name="filterChainDefinitions">
+        	<value>
+        		/css/** = anon
+        		/js/** = anon
+        		/images/** = anon
+        		/ = anon
+        		/admin = anon
+        		/login* = anon
+        		/*.jar = anon
+        		/** = authc
+        		/*.* = authc
+        	</value>
+        </property>
+    </bean>
+	</beans>
