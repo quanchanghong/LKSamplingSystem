@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.lk.dao.BaseDao;
+import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
+import cn.com.lk.pojo.User;
 import cn.com.lk.service.BaseService;
 
 @Transactional
@@ -72,6 +74,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public void saveOrUpdate(T t) {
 		baseDao.saveOrUpdate(t);
+	}
+
+	@Override
+	public Admin getAdminByName(String adminName) throws Exception {
+		return baseDao.getAdminByName(adminName);
+	}
+
+	@Override
+	public User getUserByName(String userName) throws Exception {
+		return baseDao.getUserByName(userName);
 	}
 
 

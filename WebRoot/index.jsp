@@ -30,7 +30,7 @@
             </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/login">登录</a>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</button>
           </form>
         </div>

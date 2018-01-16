@@ -19,8 +19,30 @@
 	<!-- shiro的核心管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="cacheManager" ref="cacheManager"></property> 
-		<!-- <property name="realm" ref=""></property> -->
-		<property name="sessionManager" ref="sessionManager"></property>
+		<!-- <property name="realm" ref="AdminRealm"></property> -->
+		<property name="authenticator" ref="QCHModularRealmAuthenticator"/>
+		<property name="sessionManager" ref="sessionManager"/>
+		<property name="realms">
+			<list>
+				<ref bean="AdminRealm"/>
+				<ref bean="UserRealm"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="AdminRealm" class="cn.com.lk.shiro.AdminRealm">
+	</bean>
+	
+	<bean id="UserRealm" class="cn.com.lk.shiro.UserRealm">
+	</bean>
+	
+	<bean id="QCHModularRealmAuthenticator" class="cn.com.lk.shiro.QCHModularRealmAuthenticator">
+		<property name="myRealms">
+			<map>
+				<entry key="user" value-ref="UserRealm"></entry>
+				<entry key="admin" value-ref="AdminRealm"></entry>
+			</map>
+		</property>
 	</bean>
 	
 	<!-- shiro会话管理器 -->
@@ -59,7 +81,9 @@
         		/images/** = anon
         		/ = anon
         		/admin = anon
-        		/login* = anon
+        		/admin/ = anon
+        		/admin/login = anon
+        		/user/login = anon
         		/*.jar = anon
         		/** = authc
         		/*.* = authc

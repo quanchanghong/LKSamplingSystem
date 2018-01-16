@@ -17,10 +17,12 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import cn.com.lk.dao.BaseDao;
+import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
+import cn.com.lk.pojo.User;
 
 @SuppressWarnings("unchecked")
 @Repository("baseDao")
@@ -139,6 +141,26 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public void saveOrUpdate(T t) {
 		this.getCurrentSession().saveOrUpdate(t);
+	}
+
+	@Override
+	public Admin getAdminByName(String adminName) throws Exception{
+		Admin admin = null;
+		List<Admin> list = this.getCurrentSession().createQuery("from Admin where adminName=" + adminName +"").list();
+		if ((list != null) && (list.size() > 0)){
+			admin = list.get(0);
+		}
+		return admin;
+	}
+
+	@Override
+	public User getUserByName(String userName) throws Exception {
+		User user = null;
+		List<User> list = this.getCurrentSession().createQuery("from User where userName=" + userName +"").list();
+		if ((list != null) && (list.size() > 0)){
+			user = list.get(0);
+		}
+		return user;
 	}
 
 	
