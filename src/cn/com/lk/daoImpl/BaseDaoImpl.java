@@ -146,7 +146,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public Admin getAdminByName(String adminName) throws Exception{
 		Admin admin = null;
-		List<Admin> list = this.getCurrentSession().createQuery("from Admin where adminName=" + adminName +"").list();
+		List<Admin> list = this.getCurrentSession().createQuery("from Admin where adminName='" + adminName +"'").list();
 		if ((list != null) && (list.size() > 0)){
 			admin = list.get(0);
 		}
@@ -156,7 +156,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public User getUserByName(String userName) throws Exception {
 		User user = null;
-		List<User> list = this.getCurrentSession().createQuery("from User where userName=" + userName +"").list();
+		List<User> list = this.getCurrentSession().createQuery("from User where userName='" + userName +"'").list();
 		if ((list != null) && (list.size() > 0)){
 			user = list.get(0);
 		}

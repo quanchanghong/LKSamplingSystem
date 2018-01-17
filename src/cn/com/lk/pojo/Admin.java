@@ -17,8 +17,16 @@ public class Admin {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer adminId;
+	private String role;
 	private String adminName;
 	private String adminPWD;
+	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public Integer getAdminId() {
 		return adminId;
 	}
@@ -39,8 +47,8 @@ public class Admin {
 	}
 	@Override
 	public String toString() {
-		return "Admin [adminId=" + adminId + ", adminName=" + adminName
-				+ ", adminPWD=" + adminPWD + "]";
+		return "Admin [adminId=" + adminId + ", role=" + role + ", adminName="
+				+ adminName + ", adminPWD=" + adminPWD + "]";
 	}
 	
 }

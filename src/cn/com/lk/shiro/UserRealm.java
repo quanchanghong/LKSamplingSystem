@@ -24,12 +24,13 @@ public class UserRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		// TODO Auto-generated method stub
+		System.out.println(this.getClass().getName() + "用户开始授权了！。。。。。。。。。");
 		return null;
 	}
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		System.out.println(this.getClass().getName() + "用户开始认证！。。。。。。。。。");
 		UsernamePasswordToken userPassword = (UsernamePasswordToken)token;
 		try {
 			User user = userService.getUserByName(userPassword.getUsername());

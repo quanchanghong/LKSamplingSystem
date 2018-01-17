@@ -7,7 +7,6 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <title>亚翔采样分析系统</title>
      <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-     <!--  <link href="${pageContext.request.contextPath}/css/carousel.css" rel="stylesheet">-->
   </head>
   
   <body>
@@ -31,7 +30,7 @@
           </ul>
           <form class="form-inline mt-2 mt-md-0">
             <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/login">登录</a>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/regist">注册</a>
           </form>
         </div>
       </nav>

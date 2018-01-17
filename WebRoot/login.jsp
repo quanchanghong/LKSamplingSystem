@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@include file="frontHeader.jsp" %>
+<%@include file="WEB-INF/pages/frontHeader.jsp" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -19,7 +19,7 @@
 			<div class="form-group row">
 				<label for="password" class="col-sm-1 col-form-label font-weight-bold">密码</label>
 				<div class="col-sm-3">
-					<input type="password" class="form-control " id="password" name="password"   placeholder="平均值">
+					<input type="password" class="form-control " id="password" name="password"   placeholder="密码">
 				</div>
 			</div>
 			

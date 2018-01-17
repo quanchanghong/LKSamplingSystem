@@ -12,4 +12,10 @@ public class BaseController {
 		
 		return "login";
 	}
+	
+	@RequestMapping(value="regist")
+	public String showUserRegist(Model model){
+		
+		return "regist";
+	}
 }

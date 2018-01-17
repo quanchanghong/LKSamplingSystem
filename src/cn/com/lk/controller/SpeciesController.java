@@ -1,11 +1,13 @@
 package cn.com.lk.controller;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cn.com.lk.constant.RealmConstant;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.service.SpeciesService;
@@ -18,6 +20,7 @@ public class SpeciesController {
 	private SpeciesService speciesService;
 	
 	@RequestMapping(value="")
+	@RequiresRoles(value=RealmConstant.SYSTEM_ROLE_TYPE_ADMIN)
 	public String list(Page<Species> page,Model model){
 		Page<Species> onePage = speciesService.getOnePage(Species.class, page.getCurrentPage(), page.getPageSize());
 		model.addAttribute("onePage", onePage);

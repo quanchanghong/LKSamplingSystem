@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import cn.com.lk.constant.RealmConstant;
 import cn.com.lk.pojo.User;
 import cn.com.lk.service.UserService;
 import cn.com.lk.shiro.QCHUsernamePasswordToken;
+import cn.com.lk.utils.Encrypt;
 
 @Controller
 @RequestMapping("/user")
@@ -29,6 +32,19 @@ public class UserController {
 			System.out.println("user login failed!");
 			return "redirect:/login";
 		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/regist")
+	public String regist(User user, Model model){
+		
+		if (user != null){
+			user.setPassword(Encrypt.Md5Hash(user.getPassword()));
+			user.setRole(RealmConstant.SYSTEM_ROLE_TYPE_USER);
+			Integer save = userService.save(user);
+			System.out.println(save);
+		}
+		
 		return "redirect:/";
 	}
 
