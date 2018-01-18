@@ -59,8 +59,10 @@ public class AdminRealm extends AuthorizingRealm{
 		UsernamePasswordToken userPassword = (UsernamePasswordToken)token;
 		try {
 			Admin admin = adminService.getAdminByName(userPassword.getUsername());
-			AuthenticationInfo info = new SimpleAuthenticationInfo(admin, admin.getAdminPWD(), this.getName());
-			return info;
+			if (admin != null){
+				AuthenticationInfo info = new SimpleAuthenticationInfo(admin, admin.getAdminPWD(), this.getName());
+				return info;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

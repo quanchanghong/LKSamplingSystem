@@ -37,8 +37,8 @@ public class AdminController {
 		try{
 			subject.login(token);
 		}catch(Exception e){
-			System.out.println("µÇÂ¼Ê§°Ü");
-			return "";
+			model.addAttribute("loginErrMsg", "µÇÂ¼Ê§°Ü£¡");
+			return "admin/login";
 		}
 		
 		//Ä¿Ç°Ìøµ½aisÒ³Ãæ

@@ -83,7 +83,7 @@
     	<property name="securityManager" ref="securityManager"></property>
     	<property name="loginUrl" value="/login"/>
         <property name="successUrl" value="/index.jsp"/>
-        <!-- <property name="unauthorizedUrl" value="/unauthorized"/> -->
+        <!-- <property name="unauthorizedUrl" value="/unauthorized.jsp"/> -->
         <property name="filterChainDefinitions">
         	<value>
         		/css/** = anon
@@ -96,6 +96,8 @@
         		/admin/ = anon
         		/admin/login = anon
         		/user/login = anon
+        		/user/* = anon
+        		/login = anon
         		/*.jar = anon
         		/** = authc
         		/*.* = authc

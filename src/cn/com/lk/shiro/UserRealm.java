@@ -30,12 +30,13 @@ public class UserRealm extends AuthorizingRealm{
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		System.out.println(this.getClass().getName() + "用户开始认证！。。。。。。。。。");
 		UsernamePasswordToken userPassword = (UsernamePasswordToken)token;
 		try {
 			User user = userService.getUserByName(userPassword.getUsername());
-			AuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), this.getName());
-			return info;
+			if (user != null){
+				AuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPassword(), this.getName());
+				return info;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

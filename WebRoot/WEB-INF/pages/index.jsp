@@ -34,10 +34,6 @@
             <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/regist">注册</a>
           </form>
           </c:if>
-          <c:if test="${! empty user.userName}">
-          	<label class="btn btn-outline-success my-2 my-sm-0">欢迎:${user.userName}</label>
-            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/loginOut">退出</a>
-          </c:if>
         </div>
       </nav>
     </header>

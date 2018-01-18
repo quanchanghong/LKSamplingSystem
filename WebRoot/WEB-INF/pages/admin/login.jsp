@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -22,7 +22,9 @@
   				<label for="adminName" class="col-lg-3 col-form-label" style="margin-left: 10px">用户名:</label>
   				<div class="col-sm-8">
       				<input type="text" class="form-control" id="adminName" placeholder="用户名" name="adminName">
-      				<small id="adminNameHelp" class="form-text text-muted">功能预留</small>
+      				<c:if test="${ ! empty loginErrMsg}">
+      					<small id="adminNameHelp" class="form-text text-muted">${loginErrMsg}</small>
+      				</c:if>
     			</div> 
   			</div>
   			<div class="form-group row" style="margin-top: 10px;">

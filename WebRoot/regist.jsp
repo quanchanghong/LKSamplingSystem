@@ -15,6 +15,7 @@
 				<div class="col-sm-3">
 					<input type="text" class="form-control " id="userName" name="userName" placeholder="用户名">
 				</div>
+				<label for="userName" class="col-sm-1 col-form-label font-weight-bold">用户名</label>
 			</div>
 			<div class="form-group row">
 				<label for="password" class="col-sm-1 col-form-label font-weight-bold">密码</label>

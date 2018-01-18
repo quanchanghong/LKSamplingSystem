@@ -25,6 +25,9 @@
 			
 			<div class="form-group row">
 				<div class="col-sm-4">
+					<c:if test="${! empty loginErrMsg}">
+						<small id="errMsg" class="col-form-label  text-danger">${loginErrMsg}</small>
+					</c:if>
 					<input type="submit" class="form-control btn btn-success" value="登录">
 				</div>
 			</div>

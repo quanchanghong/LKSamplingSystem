@@ -89,10 +89,4 @@ even after a JVM restart.  -->
            diskPersistent="true"
            diskExpiryThreadIntervalSeconds="600"/>
 
-    <cache name="org.apache.shiro.realm.SimpleAccountRealm.authorization"
-           maxElementsInMemory="100"
-           eternal="false"
-           timeToLiveSeconds="600"
-           overflowToDisk="false"/>
-
 </ehcache>

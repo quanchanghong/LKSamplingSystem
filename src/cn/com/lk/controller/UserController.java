@@ -1,11 +1,14 @@
 package cn.com.lk.controller;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 
@@ -28,9 +31,13 @@ public class UserController {
 		Subject subject = SecurityUtils.getSubject();
 		try{
 			subject.login(token);
+			User authUser = (User) subject.getPrincipal();
+			
+			subject.getSession().setAttribute("user", authUser);
+			
 		}catch(Exception e){
-			System.out.println("user login failed!");
-			return "redirect:/login";
+			model.addAttribute("loginErrMsg", "用户名或者密码错误！");
+			return "login";
 		}
 		return "redirect:/";
 	}
@@ -42,10 +49,21 @@ public class UserController {
 			user.setPassword(Encrypt.Md5Hash(user.getPassword()));
 			user.setRole(RealmConstant.SYSTEM_ROLE_TYPE_USER);
 			Integer save = userService.save(user);
-			System.out.println(save);
 		}
 		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/check")
+	@ResponseBody
+	public String checkUserIsExistByName(@RequestParam String userName) throws Exception{
+		System.out.println("/////////////////////////");
+		String msg = "0";//用户名可以使用
+		User user = userService.getUserByName(userName);
+		if (user != null){
+			msg = "1";//用户名已经存在！
+		}
+		return msg;
 	}
 
 }

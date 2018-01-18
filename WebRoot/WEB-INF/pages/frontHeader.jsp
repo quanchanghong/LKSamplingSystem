@@ -31,10 +31,16 @@
               <a class="nav-link disabled" href="#">功能</a>
             </li>
           </ul>
+          <c:if test="${empty user.userName}">
           <form class="form-inline mt-2 mt-md-0">
-            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/login1">登录</a>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</button>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/login">登录</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/regist">注册</a>
           </form>
+          </c:if>
+          <c:if test="${! empty user.userName}">
+          	<label class="btn btn-outline-success my-2 my-sm-0">欢迎:${user.userName}</label>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="${pageContext.request.contextPath}/loginOut">退出</a>
+          </c:if>
         </div>
       </nav>
     </header>
