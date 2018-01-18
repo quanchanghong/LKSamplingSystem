@@ -12,7 +12,7 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">亚翔采样分析系统</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}">亚翔采样分析系统</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,14 +49,14 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="first-slide" src="${pageContext.request.contextPath}/images/bg2.jpg" alt="第一" style="height: 600px">
+            <img class="first-slide" src="${pageContext.request.contextPath}/images/bg2.jpg" alt="第一" style="height: 500px; width: 100%;">
             <div class="container">
               <div class="carousel-caption text-left">
               </div>
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="${pageContext.request.contextPath}/images/bg1.jpg" alt="第二" style="height: 600px">
+            <img class="second-slide" src="${pageContext.request.contextPath}/images/bg1.jpg" alt="第二" style="height: 500px; width: 100%;">
             <div class="">
               <div class="carousel-caption">
                 <h1>介绍1.</h1>
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="${pageContext.request.contextPath}/images/bg3.jpg" alt="第三" style="height: 600px">
+            <img class="third-slide" src="${pageContext.request.contextPath}/images/bg3.jpg" alt="第三" style="height: 500px; width: 100%;">
             <div class="container">
               <div class="carousel-caption text-right">
                 <h1>第三</h1>
@@ -75,8 +75,44 @@
           </div>
         </div>
       </div>
-    	<div id="content">
-    	
+    	<div id="content" style="margin: 50px;">
+    		<div class="card-deck">
+    			<div class="card border-success" style="height: 300px">
+    				<div class="card-header bg-success text-white">浓度排名</div>
+  					<div class="card-body">
+    					<p class="card-text" style="height: 150px">浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍</p>
+    					<a href="#" class="btn btn-success" style="width: 100%">查询</a>
+  					</div>
+				</div>
+				<div class="card text-center border-danger" style="height: 300px">
+					<div class="card-header bg-danger text-white">风险值</div>
+  					<div class="card-body">
+    					<p class="card-text" style="height: 150px">风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值介绍</p>
+    					<a href="#" class="btn btn-danger" style="width: 100%">查询</a>
+  					</div>
+				</div>
+				<div class="card text-center border-warning" style="height: 300px">
+					<div class="card-header bg-warning text-white">几率图</div>
+  					<div class="card-body">
+    					<p class="card-text" style="height: 150px">几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图介绍</p>
+    					<a href="#" class="btn btn-warning" style="width: 100%">查询</a>
+  					</div>
+				</div>
+				<div class="card text-center border-info" style="height: 300px">
+					<div class="card-header bg-info text-white">百分比图</div>
+  					<div class="card-body">
+    					<p class="card-text" style="height: 150px">百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图介绍</p>
+    					<a href="#" class="btn btn-info" style="width: 100%">查询</a>
+  					</div>
+				</div>
+				<div class="card text-center border-secondary" style="height: 300px">
+					<div class="card-header bg-secondary text-white">雷达图</div>
+  					<div class="card-body">
+    					<p class="card-text" style="height: 150px">雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图介绍</p>
+    					<a href="#" class="btn btn-secondary" style="width: 100%">查询</a>
+  					</div>
+				</div>
+    		</div>
     	</div>
     	<div id="foot">
     		<footer>
