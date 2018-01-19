@@ -25,4 +25,17 @@ public class BaseController {
 		SecurityUtils.getSubject().logout();
 		return "redirect:/";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

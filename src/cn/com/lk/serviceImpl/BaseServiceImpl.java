@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.ehcache.Element;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.com.lk.constant.EhcacheConstant;
 import cn.com.lk.dao.BaseDao;
 import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
@@ -17,6 +20,7 @@ import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.User;
 import cn.com.lk.service.BaseService;
+import cn.com.lk.utils.EhcacheUtils;
 
 @Transactional
 @Service("baseService")
@@ -61,9 +65,21 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 		return baseDao.getAllIndustry();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Map<String, Object> getAreaIndustrySpeciesMap() throws Exception {
-		return baseDao.getAreaIndustrySpeciesMap();
+		
+		Map<String, Object> map = null;
+
+		Element element = EhcacheUtils.getElementByName(EhcacheConstant.CACHE_NAME_USER, EhcacheConstant.ELEMENT_NAME_AIS);
+		if (element == null || element.isExpired()) {
+			map = baseDao.getAreaIndustrySpeciesMap();
+			EhcacheUtils.getCacheByName(EhcacheConstant.CACHE_NAME_USER).put(new Element(EhcacheConstant.ELEMENT_NAME_AIS, map));
+		}else{
+			map = (Map<String, Object>) element.getObjectValue();
+		}
+		
+		return map;
 	}
 
 	@Override

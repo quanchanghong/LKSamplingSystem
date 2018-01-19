@@ -81,7 +81,7 @@
     				<div class="card-header bg-success text-white">浓度排名</div>
   					<div class="card-body">
     					<p class="card-text" style="height: 150px">浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍浓度介绍</p>
-    					<a href="#" class="btn btn-success" style="width: 100%">查询</a>
+    					<a href="${pageContext.request.contextPath}/concentration" class="btn btn-success" style="width: 100%">查询</a>
   					</div>
 				</div>
 				<div class="card text-center border-danger" style="height: 300px">

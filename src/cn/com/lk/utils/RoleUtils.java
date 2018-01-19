@@ -9,7 +9,6 @@ public class RoleUtils {
 		try {
 			SecurityUtils.getSubject().checkRole(role);
 		}catch(UnauthorizedException e){
-			System.out.println("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
 		}
 	}
 }

@@ -10,6 +10,7 @@
     <link href="${pageContext.request.contextPath}/css/lk.css" rel="stylesheet">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/echarts.js"></script>
   </head>
   
   <body style="padding-top: 70px">

@@ -3,12 +3,9 @@ package cn.com.lk.exception;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
-
-import cn.com.lk.constant.RealmConstant;
 
 /**
  * 系统全局异常处理器
@@ -26,6 +23,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver{
 			modelAndView.setViewName("unauthorized");
 		}
 		else{
+			e.printStackTrace();
 			modelAndView.setViewName("error");
 		}
 		

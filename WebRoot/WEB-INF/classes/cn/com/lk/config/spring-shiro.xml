@@ -59,10 +59,21 @@
         <property name="sessionIdUrlRewritingEnabled" value="false"/>
     </bean>
     
-    <!-- 缓存 -->
+    <!-- shiro使用ehcache缓存 -->
      <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
     	<property name="cacheManagerConfigFile" value="classpath:cn/com/lk/config/ehcache.xml"></property>
     </bean> 
+    
+    <!-- ehcache和spring整合 -->
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    	<property name="configLocation" value="classpath:cn/com/lk/config/ehcache.xml"></property>
+    	<property name="shared" value="true"></property>
+    </bean>
+    
+    <bean id="ehcacheManger" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+    	<property name="cacheManager" ref="ehcache"></property>
+    </bean>
+    <!-- ehcache和spring整合结束 -->
     
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
     
@@ -90,6 +101,7 @@
         		/js/** = anon
         		/images/** = anon
         		/ = anon
+        		/concentration = anon
         		/regist = anon
         		/user/regist = anon
         		/admin = anon

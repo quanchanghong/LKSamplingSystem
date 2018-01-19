@@ -1,5 +1,7 @@
 package cn.com.lk.pojo;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +17,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ais")
-public class AIS {
+public class AIS implements Serializable{
 	
+	private static final long serialVersionUID = 7732783269295222516L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
