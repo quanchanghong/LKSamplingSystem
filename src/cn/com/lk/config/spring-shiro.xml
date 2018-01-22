@@ -108,6 +108,7 @@
         		/admin/ = anon
         		/admin/login = anon
         		/user/login = anon
+        		/concentration/calculate = anon
         		/user/* = anon
         		/login = anon
         		/*.jar = anon

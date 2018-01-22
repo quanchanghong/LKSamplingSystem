@@ -52,7 +52,8 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-sm-4">
-							<input type="submit" class="form-control btn btn-success" value="查询" style="width: 340px;">
+							<button id="btn_calculate" class="form-control btn btn-success" value="查询" style="width: 340px;">查询</button>
+							<!-- <input type="submit" class="form-control btn btn-success" value="查询" style="width: 340px;"> -->
 						</div>
 					</div>
 				</form>
@@ -60,30 +61,84 @@
 			<div class="col" id="pie" style="height: 350px; width: 350px; ">
 			</div>
 		</div>
+		<div class="col" id="" style="height: 350px; width: 350px; ">
+		sfsdfsdf
+			</div>
    	</div>
   </body>
+  <!-- <script type="text/javascript">
+  	$(document).ready(function(){
+  	
+  		$("#btn_calculate").on("click", function(){
+  			
+			var areaId = $("#areaId").val();
+			var speciesId = $("#speciesId").val();
+			var industryId = $("#industryId").val();
+			var concentration = $("#concentration").val();
+			
+			$.post(
+				"concentration/calculate",
+				{"areaId":areaId,"speciesId":speciesId,"industryId":industryId,"concentration":concentration},
+				function(data1){
+				alert(data1);
+					myPie.setOption({
+						series: [{value:data1}]
+					});
+				}
+			);
+			
+  			return false;
+  		});
+  	});
+  </script> -->
   <script type="text/javascript">
 			var myPie = echarts.init(document.getElementById("pie"));
-			var option = {
-    tooltip : {
-       formatter: "{a} <br/>{b} : {c}%"
-    },
-    toolbox: {
-        feature: {
-            //restore: {},
-            saveAsImage: {}
-        }
-    },
-    series: [
-        {
-            name: '浓度排名',
-            type: 'gauge',
-            detail: {formatter:'{value}%'},
-            data: [{value: 53.12, name: '百分比'}]
-        }
-    ]
-};
-			myPie.setOption(option);
 			
+			var option = {
+				tooltip : {
+					formatter : "{a} <br/>{b} : {c}%"
+				},
+				toolbox : {
+					feature : {
+						//restore: {},
+						saveAsImage : {}
+					}
+				},
+				series : [ {
+					name : '浓度排名',
+					type : 'gauge',
+					detail : {
+						formatter : '{value}%'
+					},
+					data : [ {
+						value : 53.12,
+						name : '百分比'
+					} ]
+				} ]
+			};
+			myPie.setOption(option);
+			$(document).ready(function(){
+  	
+  		$("#btn_calculate").on("click", function(){
+  			
+			var areaId = $("#areaId").val();
+			var speciesId = $("#speciesId").val();
+			var industryId = $("#industryId").val();
+			var concentration = $("#concentration").val();
+			
+			$.post(
+				"concentration/calculate",
+				{"areaId":areaId,"speciesId":speciesId,"industryId":industryId,"concentration":concentration},
+				function(data1){
+				alert(data1);
+					myPie.setOption({
+						series: [{data:data1}]
+					});
+				}
+			);
+			
+  			return false;
+  		});
+  	});
 		</script>
 </html>

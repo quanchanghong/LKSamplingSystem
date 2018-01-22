@@ -1,5 +1,7 @@
 package cn.com.lk.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.ehcache.Cache;
@@ -9,7 +11,10 @@ import net.sf.ehcache.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.lk.service.ConcentrationServcie;
 import cn.com.lk.utils.EhcacheUtils;
@@ -35,5 +40,21 @@ public class ConcentrationController {
 		
 		return "user/concentration";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/calculate")
+	public String calculateConcentration(@RequestParam String areaId, @RequestParam String speciesId, @RequestParam String industryId, @RequestParam String concentration, Model model) throws Exception{
+		Double percentage = concentrationServcie.calculate(Integer.valueOf(areaId), Integer.valueOf(speciesId), Integer.valueOf(industryId), Double.valueOf(concentration));
+		System.out.println(percentage.toString());
+		
+		return percentage.toString();
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
