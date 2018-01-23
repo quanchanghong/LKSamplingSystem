@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -43,11 +45,10 @@ public class ConcentrationController {
 	
 	@ResponseBody
 	@RequestMapping("/calculate")
-	public String calculateConcentration(@RequestParam String areaId, @RequestParam String speciesId, @RequestParam String industryId, @RequestParam String concentration, Model model) throws Exception{
-		Double percentage = concentrationServcie.calculate(Integer.valueOf(areaId), Integer.valueOf(speciesId), Integer.valueOf(industryId), Double.valueOf(concentration));
-		System.out.println(percentage.toString());
+	public String calculateConcentration(HttpServletRequest request,@RequestParam String areaId, @RequestParam String speciesId, @RequestParam String industryId, @RequestParam String concentration, Model model) throws Exception{
+		String jsonObj = concentrationServcie.calculate(Integer.valueOf(areaId), Integer.valueOf(speciesId), Integer.valueOf(industryId), Double.valueOf(concentration));
 		
-		return percentage.toString();
+		return jsonObj;
 	}
 	
 	

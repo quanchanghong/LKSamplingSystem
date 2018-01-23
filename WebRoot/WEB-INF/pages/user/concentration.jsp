@@ -9,7 +9,7 @@
   <body>
     <div class="container">
     	<div class="row">
-    		<div class="col" style="margin-top: 40px;">
+    		<div class="col" style="margin-top: 30px;">
    				<form action="${pageContext.request.contextPath}/#" method="post">
 					<div class="form-group row">
 						<label for="areaId" class="col-sm-2 col-form-label font-weight-bold">区域</label>
@@ -51,6 +51,13 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label for="percent" class="col-sm-2 col-form-label font-weight-bold">浓度排名</label>
+						<div class="col-sm-3" id="div_percent">
+							<!-- <input type="text" readonly  class="form-control-plaintext " id="percent" name="percent" style="width: 250px;">--> 
+							<span id="percent" class="form-control-plaintext" style="width: 250px;">点击查询获取排名</span> 
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-sm-4">
 							<button id="btn_calculate" class="form-control btn btn-success" value="查询" style="width: 340px;">查询</button>
 							<!-- <input type="submit" class="form-control btn btn-success" value="查询" style="width: 340px;"> -->
@@ -61,9 +68,6 @@
 			<div class="col" id="pie" style="height: 350px; width: 350px; ">
 			</div>
 		</div>
-		<div class="col" id="" style="height: 350px; width: 350px; ">
-		sfsdfsdf
-			</div>
    	</div>
   </body>
   <!-- <script type="text/javascript">
@@ -111,7 +115,7 @@
 						formatter : '{value}%'
 					},
 					data : [ {
-						value : 53.12,
+						value : 0.0,
 						name : '百分比'
 					} ]
 				} ]
@@ -129,11 +133,20 @@
 			$.post(
 				"concentration/calculate",
 				{"areaId":areaId,"speciesId":speciesId,"industryId":industryId,"concentration":concentration},
-				function(data1){
-				alert(data1);
-					myPie.setOption({
-						series: [{data:data1}]
-					});
+				function(objStr){
+					var obj = eval('(' + objStr + ')');
+					if (obj.msgType == 1){//成功
+						//alert(obj);
+						$("#percent").html("<a class='text-success' href='#'>查询成功！付款查看排名</a>");
+						myPie.setOption({
+							series: [{data:obj.percent}]
+						});
+					}
+					else{
+						//失败
+						$("#percent").html("<font class='text-danger'>查询失败!</font>");
+					}
+					
 				}
 			);
 			

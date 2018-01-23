@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import cn.com.lk.dao.ConcentrationDao;
 import cn.com.lk.pojo.AIS;
+import cn.com.lk.pojo.Concentration;
 import cn.com.lk.pojo.Species;
 
 @Repository("concentrationDao")
-public class ConcentrationDaoImpl extends BaseDaoImpl<AIS> implements ConcentrationDao {
+public class ConcentrationDaoImpl extends BaseDaoImpl<Concentration> implements ConcentrationDao {
 
 	@Override
 	public AIS getAISBy3Ids(Integer areaId, Integer speciesId, Integer industryId) throws Exception {

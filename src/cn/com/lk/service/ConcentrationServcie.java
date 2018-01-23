@@ -1,9 +1,9 @@
 package cn.com.lk.service;
 
-import cn.com.lk.pojo.AIS;
+import cn.com.lk.pojo.Concentration;
 
-public interface ConcentrationServcie extends BaseService<AIS> {
+public interface ConcentrationServcie extends BaseService<Concentration> {
 
-	Double calculate(Integer areaId, Integer speciesId, Integer industryId, Double concentration) throws Exception;
+	String calculate(Integer areaId, Integer speciesId, Integer industryId, Double concentration) throws Exception;
 
 }

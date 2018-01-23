@@ -1,5 +1,7 @@
 package cn.com.lk.serviceImpl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +13,51 @@ import com.alibaba.fastjson.JSON;
 import cn.com.lk.constant.ConcentrationConstant;
 import cn.com.lk.dao.ConcentrationDao;
 import cn.com.lk.pojo.AIS;
+import cn.com.lk.pojo.Concentration;
 import cn.com.lk.service.ConcentrationServcie;
 
 @Transactional
 @Service("concentrationService")
-public class ConcentrationServiceImpl extends BaseServiceImpl<AIS> implements ConcentrationServcie {
+public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> implements ConcentrationServcie {
 	
 	@Autowired
 	private ConcentrationDao concentrationDao;
 	
 	@Override
-	public Double calculate(Integer areaId, Integer speciesId, Integer industryId, Double concentration) throws Exception {
+	public String calculate(Integer areaId, Integer speciesId, Integer industryId, Double concentration) throws Exception {
+		
+		Concentration conce = new Concentration();;
+		
 		AIS ais = concentrationDao.getAISBy3Ids(areaId, speciesId, industryId);
 		Double percent = calculatePercentByAis(ais, concentration);
-		if (percent < 0){
+		if (percent > 0){
 			
+			conce.setMsgType(ConcentrationConstant.MSG_TYPE_SUCCESS);
+			conce.setIsPay(ConcentrationConstant.NOT_PAYED);
+			conce.setPercent(getDoublePoint(percent, 3));
+			conce.setConcentrationValue(concentration);
+			
+			conce.setAreaId(areaId);
+			conce.setIndustryId(industryId);
+			conce.setSpeciesId(speciesId);
+			
+			concentrationDao.save(conce);
+			
+		}else{
+			conce.setMsgType(ConcentrationConstant.MSG_TYPE_ERROR);
 		}
-		return null;
+		return JSON.toJSONString(conce);
 	}
 	
-	public Double calculatePercentByAis(AIS ais, Double concentration){
+	public double getDoublePoint(Double value, Integer pointCount){
+		Double temp = null;
+		if (value != null){
+			temp = Double.valueOf(new BigDecimal(value).setScale(pointCount, RoundingMode.HALF_UP).toString());
+		}
+		return temp;
+	}
+	
+	public double calculatePercentByAis(AIS ais, Double concentration){
 		
 		double percent = -1.00;
 		if (ais != null){
