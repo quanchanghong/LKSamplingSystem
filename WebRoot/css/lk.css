@@ -1,33 +1,12 @@
-.pagination-success {
-  background-color: #2ecc71;
-}
-.pagination-success li.previous > a {
-  border-right-color: #75dda1;
-}
-.pagination-success li > a,
-.pagination-success li > span {
-  border-left-color: #75dda1;
-}
-.pagination-success li > a:hover,
-.pagination-success li > span:hover,
-.pagination-success li > a:focus,
-.pagination-success li > span:focus {
-  border-left-color: #75dda1;
-  background-color: #58d68d;
-}
-.pagination-success li > a:active,
-.pagination-success li > span:active {
-  background-color: #27ad60;
-}
-.pagination-success li.active > a,
-.pagination-success li.active > span {
-  border-left-color: #75dda1;
-  background-color: #27ad60;
-}
-.pagination-success li.active > a:hover,
-.pagination-success li.active > span:hover,
-.pagination-success li.active > a:focus,
-.pagination-success li.active > span:focus {
-  border-left-color: #75dda1;
-  background-color: #58d68d;
+.right_container{
+	position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    padding-left: 5px;
+    border: none;
+    z-index: 30;
+    background: #f3f3f3;
+	
 }

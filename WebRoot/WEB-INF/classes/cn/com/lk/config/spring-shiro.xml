@@ -102,9 +102,11 @@
         		/images/** = anon
         		/ = anon
         		/concentration = anon
+        		/concentration/** = anon
         		/regist = anon
         		/user/regist = anon
         		/admin = anon
+        		/radar = anon
         		/admin/ = anon
         		/admin/login = anon
         		/user/login = anon

@@ -109,7 +109,7 @@
 					<div class="card-header bg-secondary text-white">雷达图</div>
   					<div class="card-body">
     					<p class="card-text" style="height: 150px">雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图雷达图介绍</p>
-    					<a href="#" class="btn btn-secondary" style="width: 100%">查询</a>
+    					<a href="${pageContext.request.contextPath}/radar" class="btn btn-secondary" style="width: 100%">查询</a>
   					</div>
 				</div>
     		</div>

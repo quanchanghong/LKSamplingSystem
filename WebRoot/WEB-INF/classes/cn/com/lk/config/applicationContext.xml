@@ -13,11 +13,14 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	
 	<import resource="springdao.xml"/>
 	
 	<import resource="springservice.xml"/>
 	
 	<import resource="spring-shiro.xml"/>
 	
+	<bean id="dao" class="cn.com.lk.test.AAdao"></bean>
+	<bean id="AAservice" class="cn.com.lk.test.AAserviceImpl">
+		<property name="dao" ref="dao"></property>
+	</bean>
 	</beans>

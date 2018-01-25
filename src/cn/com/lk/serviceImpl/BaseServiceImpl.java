@@ -30,6 +30,10 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Qualifier(value="baseDao")
 	private BaseDao<T> baseDao;
 	
+	public void setBaseDao(BaseDao<T> baseDao) {
+		this.baseDao = baseDao;
+	}
+
 	@Override
 	public Page<T> getOnePage(Class<T> claszz, Integer index, Integer max) {
 		return baseDao.getOnePage(claszz, index, max);

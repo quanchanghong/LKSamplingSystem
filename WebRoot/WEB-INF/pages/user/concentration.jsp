@@ -135,8 +135,9 @@
 				{"areaId":areaId,"speciesId":speciesId,"industryId":industryId,"concentration":concentration},
 				function(objStr){
 					var obj = eval('(' + objStr + ')');
+					//alert(objStr);
 					if (obj.msgType == 1){//成功
-						//alert(obj);
+						//alert(obj.percent);
 						$("#percent").html("<a class='text-success' href='#'>查询成功！付款查看排名</a>");
 						myPie.setOption({
 							series: [{data:obj.percent}]

@@ -14,6 +14,8 @@ import cn.com.lk.constant.ConcentrationConstant;
 import cn.com.lk.dao.ConcentrationDao;
 import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Concentration;
+import cn.com.lk.pojo.Radar;
+import cn.com.lk.pojo.SpeciesPercent;
 import cn.com.lk.service.ConcentrationServcie;
 
 @Transactional
@@ -34,7 +36,7 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
 			
 			conce.setMsgType(ConcentrationConstant.MSG_TYPE_SUCCESS);
 			conce.setIsPay(ConcentrationConstant.NOT_PAYED);
-			conce.setPercent(getDoublePoint(percent, 3));
+			conce.setPercent(getDoublePoint(percent, 6));
 			conce.setConcentrationValue(concentration);
 			
 			conce.setAreaId(areaId);
@@ -55,6 +57,31 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
 			temp = Double.valueOf(new BigDecimal(value).setScale(pointCount, RoundingMode.HALF_UP).toString());
 		}
 		return temp;
+	}
+	
+	public double getTotalArea(double std, double avg, double finalValue){
+		double totalArea = 0.0;
+		double Variance = std * std;
+		double temp1 = Math.log((Variance / avg + 1));
+        
+		double ω = Math.sqrt(temp1);
+		double θ = Math.log(avg) - 0.5 * ω * ω;
+		
+		int n = (int) (finalValue / ConcentrationConstant.μ);
+		
+		for (int i = 0; i < n; i++)
+        {
+            double x = i * ConcentrationConstant.μ + ConcentrationConstant.μ / 2;
+            double A = 1 / (ω * Math.sqrt(2 * Math.PI));
+            double B = Math.exp(-1 * (Math.log(x) - θ) * (Math.log(x) - θ) / (2 * ω * ω));
+            double y = A * B;
+            double z = ConcentrationConstant.μ * y; //当次的面积
+            
+            totalArea += z;   //算总面积要循环累加
+            
+        }
+		
+		return totalArea;
 	}
 	
 	public double calculatePercentByAis(AIS ais, Double concentration){
@@ -105,5 +132,39 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
             }
 		}
 		return percent;
+	}
+
+	@Override
+	public String calculateRadarRisk(Radar radar) throws Exception {
+		
+		List<SpeciesPercent> spList = radar.getSpList();
+		
+		int n = spList.size();
+		double φ = 360 / n;
+		double riskArea = 0.0;
+		double RadarArea =(double) 1 / 2 * n * ConcentrationConstant.RADAR_RADIUS * ConcentrationConstant.RADAR_RADIUS * Math.sin(φ);
+		
+		
+		for(int i = 0; i < spList.size(); i++){
+
+			double nowLine = spList.get(i).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+			double nextLine = 0.0;
+			if ((i + 1) >= spList.size()){
+				nextLine = spList.get(0).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+			}else{
+				nextLine = spList.get(i+1).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+			}
+			
+			System.out.println(Math.sin(φ));
+			
+			double oneArea = (double)1 / 2 * nextLine * nowLine * Math.sin(φ);
+			System.out.println(oneArea);
+			riskArea = riskArea + oneArea;
+			System.out.println(riskArea);
+		}
+		
+		double riskValue = riskArea / RadarArea;
+		System.out.println(riskValue);
+		return null;
 	}
 }
