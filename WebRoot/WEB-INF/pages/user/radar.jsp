@@ -14,8 +14,9 @@
     				<span>
     					<button class="btn btn-success" id="btn_add">添加</button>
     					<button class="btn btn-danger" id="btn_del">删除</button>
-    					<button class="btn btn-info" id="btn_query">查询风险值</button>
-    					<button class="btn btn-info" id="btn_test">测试</button>
+    					<button class="btn btn-info" id="btn_query">查询风险系数</button>
+    					<!-- <button class="btn btn-info" id="btn_test">测试</button> -->
+    					<span class="text-danger" id="txt_risk_value"></span>
     				</span>
     			</div>
     			<div class="" style="width: 400px;">
@@ -34,19 +35,19 @@
 								<th><input type="checkbox" id="cb_1"/></th>
 								<!-- <th>1</th> -->
 								<th><input type="text" id="spec_1" name="spec_1" class="form-control form-control-sm" placeholder="请输入物种名称"/></th>
-								<th><input type="text" id="perc_1" name="perc_1" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
+								<th><input type="number" id="perc_1" name="perc_1" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
 							</tr>
 							<tr id="tr_2">
 								<th><input type="checkbox" id="cb_2"/></th>
 								<!-- <th>2</th> -->
 								<th><input type="text" id="spec_2" name="spec_2" class="form-control form-control-sm" placeholder="请输入物种名称"/></th>
-								<th><input type="text" id="perc_2" name="perc_2" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
+								<th><input type="number" id="perc_2" name="perc_2" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
 							</tr>
 							<tr id="tr_3">
 								<th><input type="checkbox" id="cb_3"/></th>
 								<!-- <th>3</th> -->
 								<th><input type="text" id="spec_3" name="spec_3" class="form-control form-control-sm" placeholder="请输入物种名称"/></th>
-								<th><input type="text" id="perc_3" name="perc_3" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
+								<th><input type="number" id="perc_3" name="perc_3" class="form-control form-control-sm" placeholder="请输入浓度排名"/></th>
 							</tr>
 						</tbody>
 					</table>
@@ -54,41 +55,44 @@
 				</div>
     		</div>
     		<div class="col" style="margin-right: 100px">
-				<div class="right_container" id="radar" style="height: 500px;">
+				<div class="right_container" id="radar" style="height: 500px; width: 1200px">
 				</div>
 			</div>
     	</div>
    	</div>
   </body>
-  <script type="text/javascript">
-  	
+<script type="text/javascript">
   	//var dom = $("#radar");
   	var myRadar = echarts.init(document.getElementById("radar"));
   	var option = {
     title: {
-        text: '风险雷达图'
+        text: '风险雷达图',
+        subtext:'',
+        top:'',
+        left:''
     },
-    tooltip: {},
+    tooltip: {
+    	show:false
+    },
     legend: {
-        data: ['物种', '物种']
+        data: []
     },
     radar: {
         // shape: 'circle',
         name: {
+        	fontSize:20,
             textStyle: {
-                color: '#fff',
-                backgroundColor: '#999',
+                color: '',
+                backgroundColor: '',
                 borderRadius: 3,
                 padding: [3, 5]
            }
         },
-        indicator: [
-           { name: '物种', max: 6500},
-           { name: '物种', max: 16000},
-           { name: '物种', max: 30000},
-           { name: '物种', max: 38000},
-           { name: '物种', max: 52000},
-           { name: '物种', max: 25000}
+        indicator: [{ text: '', max: 100},
+           { text: '', max: 100},
+           { text: '', max: 100},
+           { text: '', max: 100},
+           { text: '', max: 100}
         ]
     },
     series: [{
@@ -97,7 +101,7 @@
         // areaStyle: {normal: {}},
         data : [
             {
-                value : [4300, 10000, 28000, 35000, 50000, 19000],
+                value : [1,2,3,4,5],
                 name : '物种'
             }
         ]
@@ -105,10 +109,64 @@
 };
 	myRadar.setOption(option);
 	
+	function getinitDataFromServcer(){
+		$.ajax({
+  			url: "concentration/radarSpecies",
+  			dataType: 'json',
+  			data:{},
+  			success: function(data){
+  				var initOp = {
+  					radar: {
+        				indicator: []
+   					},
+   					series: [{
+   						/* itemStyle: {normal: {areaStyle: {type: ''}}}, */
+   						data:[{
+   							value:[]
+   						}]
+   					}]
+  				};
+  				$.each(data, function(i, obj){
+  					if (i == 20){
+  						return false;
+  					}
+  					initOp.radar.indicator.push({name:obj.speciesName, max:100});
+  					initOp.series[0].data[0].value.push(Math.random()*100);
+  				});
+  				myRadar.setOption(initOp);
+  			}
+  		});
+	}
+	
+	
+  </script> 
+  <script type="text/javascript">
+  	
 	$(document).ready(function(){
 	
 		var globalId = $("input[type=checkbox]").length;
-	
+		
+		getinitDataFromServcer();
+		
+		var testTimer = setInterval(function(){
+			var testOp = {
+  					radar: {
+        				indicator: []
+   					},
+   					series: [{
+   						/* itemStyle: {normal: {areaStyle: {type: ''}}}, */
+   						data:[{
+   							value:[]
+   						}]
+   					}]
+  				};
+  			for (var i= 0; i < 20; i++){
+  				testOp.series[0].data[0].value.push(Math.random()*100);
+  			}
+  			myRadar.setOption(testOp);
+  			
+		}, 6000);
+		
   		$("#btn_add").on("click", function(){
   			globalId = globalId + 1;
   			var idx = globalId;
@@ -116,7 +174,7 @@
   			+ "<th><input type='checkbox' "+ "id='cb_" + (idx) + "'/></th>" 
   			/* + "<th>"+ idx +"</th>" */
   			+ "<th><input id='spec_" + idx + "' name='spec_" + idx + "' type='text' class='form-control form-control-sm' placeholder='请输入物种名称'/></th>" 
-  			+ "<th><input id='perc_" + idx + "' name='perc_" + idx + "' type='text' class='form-control form-control-sm' placeholder='请输入浓度排名'/></th>" 
+  			+ "<th><input id='perc_" + idx + "' name='perc_" + idx + "' type='number' class='form-control form-control-sm' placeholder='请输入浓度排名'/></th>" 
   			+ "</tr>");
   		});
   	});
@@ -125,6 +183,10 @@
   		var id = $("input:checked").attr("id").toString().substring(3);
   		var cbArray = $("input:checked").toArray();
   		$.each(cbArray, function(index, value){
+  			if ($("input[type='checkbox']").length <= 3){
+  				alert("不能删除!至少需要三组数据");
+  				return;
+  			}
   			var cbId = $(value).attr("id").toString().substring(3);
   			$("#tr_" + cbId + "").remove();
   		});
@@ -136,6 +198,7 @@
   		
   		var trArray = $("tbody > tr").toArray();
   		var jsonArray = new Array();
+  		var queryContinue = true;
   		
   		$.each(trArray, function(index, value){
   			var suffTrId = $(value).attr("id").toString().substring(3);
@@ -143,12 +206,20 @@
   			var percent = $("#perc_" + suffTrId + "").val();
   			var obj = new Object();
   			obj.species = species;
-  			obj.percent = percent;
+  			obj.percent = parseFloat(percent * 100);
+  			if ((obj.percent > 100) || (obj.percent == 0.0)){
+  				alert("浓度排名输入错误！不能超过100%,不能为空！");
+  				queryContinue = false;
+  				return false;
+  			}
   			jsonArray.push(obj);
   			//alert(jsonArray);
   		});
   		
-		var jsonObj = $("form").serializeArray();		
+  		if(!queryContinue){
+  			return false;
+  		}
+  		
   		$.post(
   			"concentration/risk",
   			{jsonStr:JSON.stringify(jsonArray)},
@@ -162,58 +233,23 @@
         				indicator: []
    					},
    					series: [{
+   						itemStyle: {normal: {areaStyle: {type: 'default'}}},
    						data:[{
    							value:[]
    						}]
    					}]
   				};
+  				
+  				$("#txt_risk_value").html(data.riskValue);
+  				
   				$.each(data.spList, function(i, obj){
-  					op1.radar.indicator.push({ text: obj.species, max: 100});
+  					op1.radar.indicator.push({ name: obj.species, max: 100});
   					op1.series[0].data[0].value.push(obj.percent);
   				});
   				myRadar.setOption(op1);
   			},"json"
   		);
-  	});
-	
-  </script>
-  <script type="text/javascript">
-  var option1 = {
-    
-    radar: {
-        // shape: 'circle',
-        name: {
-            textStyle: {
-                color: '#fff',
-                backgroundColor: '#999',
-                borderRadius: 3,
-                padding: [3, 5]
-           }
-        },
-        indicator: [
-           { name: '销售（sales）', max: 100},
-           { name: '管理（Administration）', max: 100},
-           { name: '信息技术（Information Techology）', max: 100},
-           { name: '客服（Customer Support）', max: 100},
-           { name: '研发（Development）', max: 100},
-           { name: '市场（Marketing）', max: 100}
-        ]
-    },
-    series: [{
-        name: '预算 vs 开销（Budget vs spending）',
-        type: 'radar',
-        // areaStyle: {normal: {}},
-        data : [
-            {
-                value : [10, 20, 30, 40, 50, 60],
-                name : '预算分配（Allocated Budget）'
-            }
-        ]
-    }]
-};
-  	$("#btn_test").on("click", function(){
-  	
-  		myRadar.setOption(option1);
+  		
   	});
   </script>
 </html>

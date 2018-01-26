@@ -56,14 +56,22 @@ public class ConcentrationController {
 		return jsonObj;
 	}
 	@ResponseBody
-	@RequestMapping("/risk")
+	@RequestMapping(value="/risk", produces="application/json;charset=utf-8")
 	public String calculateRiskValue(@RequestParam String jsonStr, Model model) throws Exception{
 		List<SpeciesPercent> spList = JSON.parseArray(jsonStr,SpeciesPercent.class);
 		Radar radar = new Radar();
 		radar.setSpList(spList);
 		String str = concentrationServcie.calculateRadarRisk(radar);
-		System.out.println(JSON.toJSONString(radar));
-		return JSON.toJSONString(radar);
+		
+		return str;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/radarSpecies", produces="application/json;charset=utf-8")
+	public String initRadarSpecies(Model model) throws Exception{
+		String jsonStr = concentrationServcie.initRadarSpecies();
+		System.out.println(jsonStr);
+		return jsonStr;
 	}
 	
 	

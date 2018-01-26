@@ -47,7 +47,7 @@
 					<div class="form-group row">
 						<label for="concentration" class="col-sm-2 col-form-label font-weight-bold">浓度值</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control " id="concentration" name="concentration" style="width: 250px;" placeholder="请输入对应浓度值">
+							<input type="number" class="form-control " id="concentration" name="concentration" style="width: 250px;" placeholder="请输入对应浓度值">
 						</div>
 					</div>
 					<div class="form-group row">

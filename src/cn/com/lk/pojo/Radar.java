@@ -9,6 +9,15 @@ public class Radar implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private List<SpeciesPercent> spList = new ArrayList<SpeciesPercent>();
+	private double riskValue;
+
+	public double getRiskValue() {
+		return riskValue;
+	}
+
+	public void setRiskValue(double riskValue) {
+		this.riskValue = riskValue;
+	}
 
 	public List<SpeciesPercent> getSpList() {
 		return spList;
@@ -20,7 +29,8 @@ public class Radar implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Radar [spList=" + spList + "]";
+		return "Radar [spList=" + spList + ", riskValue=" + riskValue + "]";
 	}
+
 
 }

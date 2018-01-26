@@ -15,6 +15,7 @@ import cn.com.lk.dao.ConcentrationDao;
 import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Concentration;
 import cn.com.lk.pojo.Radar;
+import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.SpeciesPercent;
 import cn.com.lk.service.ConcentrationServcie;
 
@@ -147,24 +148,30 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
 		
 		for(int i = 0; i < spList.size(); i++){
 
-			double nowLine = spList.get(i).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+			double nowLine = spList.get(i).getPercent();
 			double nextLine = 0.0;
 			if ((i + 1) >= spList.size()){
-				nextLine = spList.get(0).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+				nextLine = spList.get(0).getPercent();
 			}else{
-				nextLine = spList.get(i+1).getPercent() * ConcentrationConstant.RADAR_RADIUS;
+				nextLine = spList.get(i+1).getPercent();
 			}
 			
-			System.out.println(Math.sin(¦Õ));
-			
 			double oneArea = (double)1 / 2 * nextLine * nowLine * Math.sin(¦Õ);
-			System.out.println(oneArea);
 			riskArea = riskArea + oneArea;
-			System.out.println(riskArea);
+			
 		}
 		
 		double riskValue = riskArea / RadarArea;
+		radar.setRiskValue(riskValue);
+		
 		System.out.println(riskValue);
-		return null;
+		
+		return JSON.toJSONString(radar);
+	}
+
+	@Override
+	public String initRadarSpecies() throws Exception {
+		List<Species> allSpecies = concentrationDao.getAllSpecies();
+		return JSON.toJSONString(allSpecies);
 	}
 }

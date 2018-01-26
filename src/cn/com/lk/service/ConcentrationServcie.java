@@ -9,4 +9,6 @@ public interface ConcentrationServcie extends BaseService<Concentration> {
 
 	String calculateRadarRisk(Radar radar) throws Exception;
 
+	String initRadarSpecies() throws Exception;
+
 }
