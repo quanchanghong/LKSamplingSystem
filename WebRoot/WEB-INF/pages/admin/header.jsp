@@ -29,6 +29,7 @@
           			<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/species">物种管理</a>
          		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/industry">产业管理</a>
          		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/ais">关系管理</a>
+         		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/riskSpecies">风险物种管理</a>
         		</div>
         		</shior:hasRole>
       		</li>
