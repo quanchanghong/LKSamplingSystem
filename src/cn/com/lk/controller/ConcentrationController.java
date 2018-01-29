@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
+import cn.com.lk.constant.ConcentrationConstant;
 import cn.com.lk.pojo.Radar;
 import cn.com.lk.pojo.SpeciesPercent;
 import cn.com.lk.service.ConcentrationServcie;
@@ -70,12 +71,17 @@ public class ConcentrationController {
 	@RequestMapping(value="/radarSpecies", produces="application/json;charset=utf-8")
 	public String initRadarSpecies(Model model) throws Exception{
 		String jsonStr = concentrationServcie.initRadarSpecies();
-		System.out.println(jsonStr);
+		//System.out.println(jsonStr);
 		return jsonStr;
 	}
 	
-	
-	
+	@ResponseBody
+	@RequestMapping(value="/initRadarRandSpecies", produces="application/json;charset=utf-8")
+	public String initRadarRandSpecies(Model model) throws Exception{
+		String jsonStr = concentrationServcie.initRadarRandSpecies(ConcentrationConstant.INIT_RADAR_RAND_SPECIES_COUNT);
+		//System.out.println(jsonStr);
+		return jsonStr;
+	}
 	
 	
 

@@ -139,9 +139,24 @@
 					if (obj.msgType == 1){//成功
 						//alert(obj.percent);
 						$("#percent").html("<a class='text-success' href='#'>查询成功！付款查看排名</a>");
-						myPie.setOption({
+						var percentOpt = {
+							series : [ {
+								/* name : '浓度排名',
+								type : 'gauge',
+								detail : {
+									formatter : '{value}%'
+								}, */
+								data : [ {
+									value : 0.0,
+									name : '百分比'
+								} ]
+							} ]
+						};
+						percentOpt.series[0].data[0].value = obj.percent;
+						myPie.setOption.setOption(percentOpt);
+						/* myPie.setOption({
 							series: [{data:obj.percent}]
-						});
+						}); */
 					}
 					else{
 						//失败

@@ -88,7 +88,8 @@
                 padding: [3, 5]
            }
         },
-        indicator: [{ text: '', max: 100},
+        indicator: [
+           { text: '', max: 100},
            { text: '', max: 100},
            { text: '', max: 100},
            { text: '', max: 100},
@@ -101,7 +102,7 @@
         // areaStyle: {normal: {}},
         data : [
             {
-                value : [1,2,3,4,5],
+                value : [0,0,0,0,0],
                 name : '物种'
             }
         ]
@@ -111,7 +112,7 @@
 	
 	function getinitDataFromServcer(){
 		$.ajax({
-  			url: "concentration/radarSpecies",
+  			url: "concentration/initRadarRandSpecies",//随机获取20个物种值
   			dataType: 'json',
   			data:{},
   			success: function(data){
@@ -133,7 +134,9 @@
   					initOp.radar.indicator.push({name:obj.speciesName, max:100});
   					initOp.series[0].data[0].value.push(Math.random()*100);
   				});
+  				
   				myRadar.setOption(initOp);
+  				
   			}
   		});
 	}
@@ -141,6 +144,8 @@
 	
   </script> 
   <script type="text/javascript">
+  
+  	var globalTimer = -1;
   	
 	$(document).ready(function(){
 	
@@ -148,24 +153,9 @@
 		
 		getinitDataFromServcer();
 		
-		var testTimer = setInterval(function(){
-			var testOp = {
-  					radar: {
-        				indicator: []
-   					},
-   					series: [{
-   						/* itemStyle: {normal: {areaStyle: {type: ''}}}, */
-   						data:[{
-   							value:[]
-   						}]
-   					}]
-  				};
-  			for (var i= 0; i < 20; i++){
-  				testOp.series[0].data[0].value.push(Math.random()*100);
-  			}
-  			myRadar.setOption(testOp);
-  			
-		}, 6000);
+		globalTimer = setInterval(function(){
+  					getinitDataFromServcer();
+  				}, 3000);
 		
   		$("#btn_add").on("click", function(){
   			globalId = globalId + 1;
@@ -228,7 +218,15 @@
   				//alert(JSON.stringify(data12).spList[0]);
   				//alert(data.spList[0].percent);
   				
+  				clearInterval(globalTimer);//清除随机显示
+  				
   				var op1 = {
+  					toolbox : {
+						feature : {
+							//restore: {},
+							saveAsImage : {}
+						}
+					},
   					radar: {
         				indicator: []
    					},

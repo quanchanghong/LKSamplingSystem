@@ -13,5 +13,7 @@ public interface ConcentrationConstant {
 	public static final Integer NOT_PAYED = 0;
 	
 	public static final Integer RADAR_RADIUS = 100;//À×´ïÍ¼°ë¾¶Îª100
+	
+	public static final Integer INIT_RADAR_RAND_SPECIES_COUNT = 20;
 
 }

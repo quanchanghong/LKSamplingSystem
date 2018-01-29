@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.sf.ehcache.Element;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 
 import cn.com.lk.constant.ConcentrationConstant;
+import cn.com.lk.constant.EhcacheConstant;
 import cn.com.lk.dao.ConcentrationDao;
 import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Concentration;
@@ -18,6 +22,7 @@ import cn.com.lk.pojo.Radar;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.SpeciesPercent;
 import cn.com.lk.service.ConcentrationServcie;
+import cn.com.lk.utils.EhcacheUtils;
 
 @Transactional
 @Service("concentrationService")
@@ -173,5 +178,28 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
 	public String initRadarSpecies() throws Exception {
 		List<Species> allSpecies = concentrationDao.getAllSpecies();
 		return JSON.toJSONString(allSpecies);
+	}
+
+	@Override
+	public String initRadarRandSpecies(Integer initRadarRandSpeciesCount) throws Exception {
+		List<Species> randSpecies = null;
+		List<Species> allSpecies = null;
+		
+		Element element = EhcacheUtils.getElementByName(EhcacheConstant.CACHE_NAME_USER, EhcacheConstant.ELEMENT_NAME_ALL_SPECIES);
+		if (element == null || element.isExpired()){
+			//randSpecies = concentrationDao.initRadarRandSpecies(initRadarRandSpeciesCount);
+			allSpecies = concentrationDao.getAllSpecies();
+			EhcacheUtils.getCacheByName(EhcacheConstant.CACHE_NAME_USER).put(new Element(EhcacheConstant.ELEMENT_NAME_ALL_SPECIES, allSpecies));
+		}else{
+			allSpecies = (List<Species>) element.getObjectValue();
+		}
+		
+		int startIndex = (int)(Math.random() * (allSpecies.size() - ConcentrationConstant.INIT_RADAR_RAND_SPECIES_COUNT));
+		int endIndex = startIndex + ConcentrationConstant.INIT_RADAR_RAND_SPECIES_COUNT;
+		randSpecies = allSpecies.subList(startIndex, endIndex);
+		
+		//System.out.println(randSpecies.size());
+		
+		return JSON.toJSONString(randSpecies);
 	}
 }

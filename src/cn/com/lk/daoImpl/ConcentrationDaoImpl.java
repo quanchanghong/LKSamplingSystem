@@ -1,5 +1,6 @@
 package cn.com.lk.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -26,6 +27,14 @@ public class ConcentrationDaoImpl extends BaseDaoImpl<Concentration> implements 
 		}
 		
 		return ais;
+	}
+
+	@Override
+	public List<Species> initRadarRandSpecies(Integer initRadarRandSpeciesCount) throws Exception {
+		String sql = "SELECT * FROM species WHERE speciesId >= ((SELECT MAX(speciesId) FROM species)-(SELECT MIN(speciesId) FROM species)) * RAND() + (SELECT MIN(speciesId) FROM species)  LIMIT " + initRadarRandSpeciesCount + "";
+		List<Species> speciesList = this.getCurrentSession().createSQLQuery(sql).addEntity(Species.class).list();
+		System.out.println(speciesList.size());
+		return speciesList;
 	}
 
 

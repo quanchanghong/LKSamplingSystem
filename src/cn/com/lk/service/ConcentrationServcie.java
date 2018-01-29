@@ -11,4 +11,6 @@ public interface ConcentrationServcie extends BaseService<Concentration> {
 
 	String initRadarSpecies() throws Exception;
 
+	String initRadarRandSpecies(Integer initRadarRandSpeciesCount) throws Exception;
+
 }
