@@ -153,7 +153,7 @@
 							} ]
 						};
 						percentOpt.series[0].data[0].value = obj.percent;
-						myPie.setOption.setOption(percentOpt);
+						myPie.setOption(percentOpt);
 						/* myPie.setOption({
 							series: [{data:obj.percent}]
 						}); */

@@ -28,7 +28,6 @@ public class AIS implements Serializable{
 	private String name;
 	
 	@OneToOne
-	
 	@JoinColumn(name="areaId")
 	private Area area;
 	
