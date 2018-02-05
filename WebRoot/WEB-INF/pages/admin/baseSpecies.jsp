@@ -11,16 +11,16 @@
   			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/riskSpecies/add">添加</a>
   		</div>
   		<div>
-  			<table class="table table-bordered">
+  			<table class="table table-bordered ">
 			<thead>
 				<tr>
 					<th scope="col">序号</th>
 					<th scope="col">业主名称</th>
-					<th scope="col">物种</th>
-					<th scope="col">区域</th>
-					<th scope="col">产业</th>
+					<th scope="col">问题类型</th>
+					<th scope="col">风险值</th>
+					<!--<th scope="col">产业</th>
 					<th scope="col">浓度</th>
-					<th scope="col">浓度排名</th>
+					<th scope="col">浓度排名</th> -->
 					<th scope="col">处理日期</th>
 					<th scope="col">资料来源</th>
 					<th scope="col">操作</th>
@@ -31,17 +31,17 @@
   					<tr>
   						<th scope="row">${status.count + (baseSpeciesPage.currentPage - 1)*baseSpeciesPage.pageSize}</th>
   						<td>${baseSpecies.customName}</td>
-  						<td>${baseSpecies.species.speciesName}</td>
-  						<td>${baseSpecies.area.areaName}</td>
-  						<td>${baseSpecies.industry.industryName}</td>
+  						<td>${baseSpecies.productQuestion.type}</td>
+  						<td>${baseSpecies.riskValue}</td>
+  						<%-- <td>${baseSpecies.industry.industryName}</td>
   						<td>${baseSpecies.concentrationValue}</td>
-  						<td>${baseSpecies.percent}</td>
+  						<td>${baseSpecies.percent}</td> --%>
   						<td>${baseSpecies.date}</td>
   						<td>${baseSpecies.source}</td>
   						
   						<td>
-  							<%-- <a  class="btn btn-success " title="123" href="${pageContext.request.contextPath }/admin/baseSpecies/edit?id=${baseSpecies.id}" style="height: 30px; padding-top: 1px;">编辑</a> --%>
-  							<a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/riskSpecies/delete?id=${baseSpecies.id}"  style="height: 30px; padding-top: 1px;">删除</a>
+  							<a  class="btn btn-success " title="123" href="${pageContext.request.contextPath }/admin/riskSpecies/look?id=${baseSpecies.id}" style="height: 30px; padding-top: 1px;">查看</a> 
+  							<%-- <a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/riskSpecies/delete?id=${baseSpecies.id}"  style="height: 30px; padding-top: 1px;">删除</a>--%>
   						</td>
   					</tr>
   				</c:forEach>

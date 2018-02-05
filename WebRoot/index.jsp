@@ -92,16 +92,16 @@
   					</div>
 				</div>
 				<div class="card text-center border-warning" style="height: 300px">
-					<div class="card-header bg-warning text-white">几率图</div>
+					<div class="card-header bg-warning text-white">功能预留</div>
   					<div class="card-body">
-    					<p class="card-text" style="height: 150px">几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图几率图介绍</p>
+    					<p class="card-text" style="height: 150px">功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留</p>
     					<a href="#" class="btn btn-warning" style="width: 100%">查询</a>
   					</div>
 				</div>
 				<div class="card text-center border-info" style="height: 300px">
-					<div class="card-header bg-info text-white">百分比图</div>
+					<div class="card-header bg-info text-white">功能预留</div>
   					<div class="card-body">
-    					<p class="card-text" style="height: 150px">百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图百分比图介绍</p>
+    					<p class="card-text" style="height: 150px">功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留功能预留</p>
     					<a href="#" class="btn btn-info" style="width: 100%">查询</a>
   					</div>
 				</div>

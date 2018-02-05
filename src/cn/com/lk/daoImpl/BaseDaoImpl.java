@@ -21,6 +21,7 @@ import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
+import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.User;
 
@@ -161,6 +162,17 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 			user = list.get(0);
 		}
 		return user;
+	}
+
+	@Override
+	public List<ProductQuestion> getAllProductQuestionList() throws Exception {
+		String hql = "from ProductQuestion";
+		return this.getCurrentSession().createQuery(hql).list();
+	}
+
+	@Override
+	public <T> T getEntityById(Class<T> clazz, Integer id) {
+		return this.getCurrentSession().get(clazz, id);
 	}
 
 	

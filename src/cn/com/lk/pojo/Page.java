@@ -77,5 +77,12 @@ public class Page <T>{
 	public void setList(List<T> list) {
 		this.list = list;
 	}
-
+	@Override
+	public String toString() {
+		return "Page [pageCount=" + pageCount + ", pageSize=" + pageSize
+				+ ", pageTotal=" + pageTotal + ", currentPage=" + currentPage
+				+ ", nextPage=" + nextPage + ", lastPage=" + lastPage
+				+ ", firstPage=" + firstPage + ", endPage=" + endPage
+				+ ", list=" + list + "]";
+	}
 }

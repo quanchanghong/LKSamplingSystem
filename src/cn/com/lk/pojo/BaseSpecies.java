@@ -1,12 +1,20 @@
 package cn.com.lk.pojo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,40 +33,54 @@ public class BaseSpecies implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String customName;
 	
+	@OneToMany(targetEntity=AISCP.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="baseSpeciesId", referencedColumnName="id")
+	private Set<AISCP> AISCPSet = new HashSet<AISCP>();
+	
+	//private Integer pdId;
+	
+	@ManyToOne(targetEntity=ProductQuestion.class, fetch=FetchType.EAGER)
+	@JoinColumn(name="pdId", referencedColumnName="pdId")
+	private ProductQuestion productQuestion;
+	
+	private String customName;
+	private double riskValue;
 	private String date;
 	private String source;
 	
-	private String percent;
-	private double concentrationValue;
-	
-	private Integer speciesId;
-	private Integer areaId;
-	private Integer industryId;
-	
-	@OneToOne
-	@JoinColumn(name="industryId", insertable=false, updatable=false)
-	private Industry industry;
-	
-	@OneToOne
-	@JoinColumn(name="areaId", insertable=false, updatable=false)
-	private Area area;
-	
-	@OneToOne
-	@JoinColumn(name="speciesId", insertable=false, updatable=false)
-	private Species species;
+//	public Integer getPdId() {
+//		return pdId;
+//	}
+//	public void setPdId(Integer pdId) {
+//		this.pdId = pdId;
+//	}
+	public void setRiskValue(Double riskValue) {
+		this.riskValue = riskValue;
+	}
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public ProductQuestion getProductQuestion() {
+		return productQuestion;
+	}
+	public void setProductQuestion(ProductQuestion productQuestion) {
+		this.productQuestion = productQuestion;
+	}
 	public String getCustomName() {
 		return customName;
 	}
 	public void setCustomName(String customName) {
 		this.customName = customName;
+	}
+	public double getRiskValue() {
+		return riskValue;
+	}
+	public void setRiskValue(double riskValue) {
+		this.riskValue = riskValue;
 	}
 	public String getDate() {
 		return date;
@@ -72,65 +94,19 @@ public class BaseSpecies implements Serializable{
 	public void setSource(String source) {
 		this.source = source;
 	}
-	public String getPercent() {
-		return percent;
+	
+	public Set<AISCP> getAISCPSet() {
+		return AISCPSet;
 	}
-	public void setPercent(String percent) {
-		this.percent = percent;
-	}
-	public double getConcentrationValue() {
-		return concentrationValue;
-	}
-	public void setConcentrationValue(double concentrationValue) {
-		this.concentrationValue = concentrationValue;
-	}
-	public Integer getSpeciesId() {
-		return speciesId;
-	}
-	public void setSpeciesId(Integer speciesId) {
-		this.speciesId = speciesId;
-	}
-	public Integer getAreaId() {
-		return areaId;
-	}
-	public void setAreaId(Integer areaId) {
-		this.areaId = areaId;
-	}
-	public Integer getIndustryId() {
-		return industryId;
-	}
-	public void setIndustryId(Integer industryId) {
-		this.industryId = industryId;
-	}
-	public Industry getIndustry() {
-		return industry;
-	}
-	public void setIndustry(Industry industry) {
-		this.industry = industry;
-	}
-	public Area getArea() {
-		return area;
-	}
-	public void setArea(Area area) {
-		this.area = area;
-	}
-	public Species getSpecies() {
-		return species;
-	}
-	public void setSpecies(Species species) {
-		this.species = species;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setAISCPSet(Set<AISCP> aISCPSet) {
+		AISCPSet = aISCPSet;
 	}
 	@Override
 	public String toString() {
-		return "BaseSpecies [id=" + id + ", customName=" + customName
-				+ ", date=" + date + ", source=" + source + ", percent="
-				+ percent + ", concentrationValue=" + concentrationValue
-				+ ", speciesId=" + speciesId + ", areaId=" + areaId
-				+ ", industryId=" + industryId + ", industry=" + industry
-				+ ", area=" + area + ", species=" + species + "]";
+		return "BaseSpecies [id=" + id + ", AISCPSet=" + AISCPSet
+				+ ", productQuestion=" + productQuestion.getPdId() + ", customName="
+				+ customName + ", riskValue=" + riskValue + ", date=" + date
+				+ ", source=" + source + "]";
 	}
 	
 }

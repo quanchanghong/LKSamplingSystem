@@ -14,6 +14,14 @@ public interface ConcentrationConstant {
 	
 	public static final Integer RADAR_RADIUS = 100;//À×´ïÍ¼°ë¾¶Îª100
 	
-	public static final Integer INIT_RADAR_RAND_SPECIES_COUNT = 20;
+	public static final Integer INIT_RADAR_RAND_SPECIES_COUNT = 10;
+	
+	public static final Integer RESPONSE_FOR_AJAX_REQUEST_STATE_SUCCESS = 1;
+	
+	public static final Integer RESPONSE_FOR_AJAX_REQUEST_STATE_ERROR = 0;
+	
+	public static final Integer CALCULATE_RISK_VALUE_SUCESS = 1;
+	
+	public static final Integer CALCULATE_RISK_VALUE_ERROR = -1;
 
 }

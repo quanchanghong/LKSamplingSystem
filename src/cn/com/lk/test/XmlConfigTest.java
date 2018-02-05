@@ -10,9 +10,8 @@ public class XmlConfigTest {
 	
 	@Test
 	public void testBean(){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:applicationContextTest.xml");
-		Aservice<Admin> s =  (AAserviceImpl) ctx.getBean("AAservice");
-		s.sayHello();
+		
+		System.out.println(Double.parseDouble("acv"));
 	}
 	
 }

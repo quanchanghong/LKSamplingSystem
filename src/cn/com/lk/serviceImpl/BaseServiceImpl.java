@@ -17,6 +17,7 @@ import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
+import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.User;
 import cn.com.lk.service.BaseService;
@@ -104,6 +105,19 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Override
 	public User getUserByName(String userName) throws Exception {
 		return baseDao.getUserByName(userName);
+	}
+
+	@Override
+	public List<ProductQuestion> getAllProductQuestionList() throws Exception {
+		List<ProductQuestion> list = null;
+		Element element = EhcacheUtils.getElementByName(EhcacheConstant.CACHE_NAME_USER, EhcacheConstant.ELEMENT_NAME_ALL_PRODUCTQUESTION);
+		if (element == null || element.isExpired()) {
+			list = baseDao.getAllProductQuestionList();
+			EhcacheUtils.getCacheByName(EhcacheConstant.CACHE_NAME_USER).put(new Element(EhcacheConstant.ELEMENT_NAME_ALL_PRODUCTQUESTION, list));
+		}else{
+			list = (List<ProductQuestion>) element.getObjectValue();
+		}
+		return list;
 	}
 
 

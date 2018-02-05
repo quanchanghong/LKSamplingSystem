@@ -88,6 +88,10 @@
                 padding: [3, 5]
            }
         },
+        axisLabel:{
+        	show:true,
+        	showMinLabel:false
+        },
         indicator: [
            { text: '', max: 100},
            { text: '', max: 100},
@@ -186,6 +190,8 @@
   	$("#btn_query").on("click", function(){
   		//alert($("tbody > tr").toArray());
   		
+  		clearInterval(globalTimer);//清除随机显示
+  		
   		var trArray = $("tbody > tr").toArray();
   		var jsonArray = new Array();
   		var queryContinue = true;
@@ -217,8 +223,6 @@
   				//var obj = eval('(' + data12 + ')');
   				//alert(JSON.stringify(data12).spList[0]);
   				//alert(data.spList[0].percent);
-  				
-  				clearInterval(globalTimer);//清除随机显示
   				
   				var op1 = {
   					toolbox : {

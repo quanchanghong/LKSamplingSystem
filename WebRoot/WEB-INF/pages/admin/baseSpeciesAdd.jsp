@@ -36,7 +36,7 @@
 						</thead>
 						<tbody>
 							<tr id="tr_1" >
-								<th rowspan="3" ><input type="text" id="custom_1" class="form-control form-control-sm" placeholder="请输入业主名称"/></th>
+								<th><input type="text" id="custom_1" class="form-control form-control-sm" placeholder="请输入业主名称"/></th>
 								<th>
 									<select class="form-control form-control-sm" id="speciesId_1" name="speciesId_1" >
 										<c:forEach items="${areaIndustrySpeciesMap.speciesList}" var="species">
@@ -60,10 +60,11 @@
 								</th>
 								<th><input type="number" onblur="calculatePercent(this.id)" id="con_1" name="con_1" class="form-control form-control-sm" placeholder="请输入浓度"/></th>
 								<th><input type="text" id="perc_1" name="perc_1" class="form-control form-control-sm" placeholder="输入浓度自动计算"/></th>
-								<th><input type="date" id="date_1" name="date_1" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
-								<th><input type="text" id="source_1" name="source_1" class="form-control form-control-sm" placeholder="请输入资料来源"/></th>
+								<th rowspan="3"><input type="date" id="date_1" name="date_1" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
+								<th rowspan="3" ><input type="text" id="source_1" name="source_1" class="form-control form-control-sm" placeholder="请输入资料来源"/></th>
 							</tr>
 							<tr id="tr_2">
+								<th><label class="text-danger">请选择问题种类</label></th>
 								<th>
 									<select class="form-control form-control-sm" id="speciesId_2" name="speciesId_2" >
 										<c:forEach items="${areaIndustrySpeciesMap.speciesList}" var="species">
@@ -87,10 +88,17 @@
 								</th>
 								<th><input type="number" onblur="calculatePercent(this.id)" id="con_2" name="con_2" class="form-control form-control-sm" placeholder="请输入浓度"/></th>
 								<th><input type="text" id="perc_2" name="perc_2" class="form-control form-control-sm" placeholder="输入浓度自动计算"/></th>
-								<th><input type="date" id="date_2" name="date_2" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
-								<th><input type="text" id="source_2" name="source_2" class="form-control form-control-sm" placeholder="请输入资料来源"/></th>
+								<!-- <th><input type="date" id="date_2" name="date_2" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
+								<th><input type="text" id="source_2" name="source_2" class="form-control form-control-sm" placeholder="请输入资料来源"/></th> -->
 							</tr>
 							<tr id="tr_3">
+								<th>
+									<select class="form-control form-control-sm" id="pdType" name="pdType" >
+										<c:forEach items="${productQuestionList}" var="pd">
+											<option value="${pd.pdId}">${pd.type}</option>
+										</c:forEach>
+									</select>
+								</th>
 								<th>
 									<select class="form-control form-control-sm" id="speciesId_3" name="speciesId_3" >
 										<c:forEach items="${areaIndustrySpeciesMap.speciesList}" var="species">
@@ -114,8 +122,8 @@
 								</th>
 								<th><input type="number" onblur="calculatePercent(this.id)" id="con_3" name="con_3" class="form-control form-control-sm" placeholder="请输入浓度"/></th>
 								<th><input type="text" id="perc_3" name="perc_3" class="form-control form-control-sm" placeholder="输入浓度自动计算"/></th>
-								<th><input type="date" id="date_3" name="date_3" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
-								<th><input type="text" id="source_3" name="source_3" class="form-control form-control-sm" placeholder="请输入资料来源"/></th>
+								<!-- <th><input type="date" id="date_3" name="date_3" class="form-control form-control-sm" placeholder="请输入处理日期"/></th>
+								<th><input type="text" id="source_3" name="source_3" class="form-control form-control-sm" placeholder="请输入资料来源"/></th> -->
 							</tr>
 						</tbody>
 					</table>
@@ -161,12 +169,12 @@
    				+ "<th>"
    				+ "<input type='text' id='perc_" + idx + "' name='perc_" + idx + "' class='form-control form-control-sm' placeholder='输入浓度自动计算'/>"
    				+ "</th>"
-   				+ "<th>"
+   				/* + "<th>"
    				+ "<input type='date' id='date_" + idx + "' name='date_" + idx + "' class='form-control form-control-sm' placeholder='请输入处理日期'/>"
    				+ "</th>"
    				+ "<th>"
    				+ "<input type='text' id='source_" + idx + "' name='source_" + idx + "' class='form-control form-control-sm' placeholder='请输入资料来源'/>"
-   				+ "</th>"
+   				+ "</th>" */
    				+ "</tr>" 
    			);
    		}
@@ -201,18 +209,20 @@
    				}
    			});
    		}
-   		
    		function saveData(){
    			var trArray = $("tbody > tr").toArray();
    			var jsonArray = new Array();
    			var customName = $("#custom_1").val();
+   			var date = $("#date_1").val();
+   			var source = $("#source_1").val();
+   			var pdId = $("#pdType").val();
    			
    			$.each(trArray, function(i, obj){
    				var suffId = $(obj).attr("id").substring(3);
    				var object = new Object();
-   				object.customName = customName;
+   				/* object.customName = customName;
    				object.date = $("#date_" + suffId + "").val();
-   				object.source = $("#source_" + suffId + "").val();
+   				object.source = $("#source_" + suffId + "").val(); */
    				object.speciesId = $("#speciesId_" + suffId + "").val();
    				object.areaId = $("#areaId_" + suffId + "").val();
    				object.industryId = $("#industryId_" + suffId + "").val();
@@ -225,10 +235,14 @@
    			$.ajax({
    				url:"save",
    				type:"post",
-   				dataType:"json",
-   				data:{jsonStr:JSON.stringify(jsonArray)},
+   				dataType:"json",//, date:date, customName:customName, source:source, pdType:pdType
+   				data:{jsonStr:JSON.stringify(jsonArray),date:date,customName:customName,source:source,pdId:pdId},
    				success:function(data){
-   					alert(data);
+   					if (data == 1){//成功
+   						window.location.assign("${pageContext.request.contextPath}/admin/riskSpecies");
+   					}else{
+   						alert("添加失败!");
+   					}
    				}
    			});
    		}

@@ -58,6 +58,8 @@
 				<value>cn.com.lk.pojo.AIS</value>
 				<value>cn.com.lk.pojo.Concentration</value>
 				<value>cn.com.lk.pojo.BaseSpecies</value>
+				<value>cn.com.lk.pojo.ProductQuestion</value>
+				<value>cn.com.lk.pojo.AISCP</value>
 			</list>
 		</property>
 	</bean> 

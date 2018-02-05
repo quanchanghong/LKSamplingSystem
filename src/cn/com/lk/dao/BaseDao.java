@@ -8,6 +8,7 @@ import cn.com.lk.pojo.Admin;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
+import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.User;
 
@@ -38,4 +39,14 @@ public interface BaseDao<T> {
 	
 	Admin getAdminByName(String adminName) throws Exception;
 	User getUserByName(String userName) throws Exception;
+
+	List<ProductQuestion> getAllProductQuestionList() throws Exception;
+	
+	/**
+	 * 重写该方法getById，之前的设计模式有缺陷，容易出现贫血模式！
+	 * @param clazz
+	 * @param id
+	 * @return
+	 */
+	<T> T getEntityById(Class<T> clazz, Integer id);
 }
