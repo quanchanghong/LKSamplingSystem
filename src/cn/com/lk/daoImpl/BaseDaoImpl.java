@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -25,7 +26,6 @@ import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.pojo.User;
 
-@SuppressWarnings("unchecked")
 @Repository("baseDao")
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	
@@ -59,11 +59,14 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		
 		Page<T> page = new Page<T>();
 		Session session = this.getCurrentSession();
-		
-		Criteria criteria = session.createCriteria(clazz);
+		//会出现重复显示的BUG
+		/*Criteria criteria = session.createCriteria(clazz);
 		criteria.setFirstResult((index - 1) * page.getPageSize());
-		criteria.setMaxResults(max);
-		List<T> list = criteria.list();
+		criteria.setMaxResults(max);*/
+		Query query = session.createQuery("from  " + clazz.getSimpleName());
+		query.setFirstResult((index - 1) * page.getPageSize());
+		query.setMaxResults(max);
+		List<T> list = query.list();
 		page.setList(list);
 		
 		Criteria criteriaCount = session.createCriteria(clazz);

@@ -92,7 +92,7 @@
     <!-- shiro核心过滤器，id必须和web.xml中的filtername一致 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
     	<property name="securityManager" ref="securityManager"></property>
-    	<property name="loginUrl" value="/login"/>
+    	<property name="loginUrl" value="/admin"/>
         <property name="successUrl" value="/index.jsp"/>
         <!-- <property name="unauthorizedUrl" value="/unauthorized.jsp"/> -->
         <property name="filterChainDefinitions">
@@ -113,6 +113,7 @@
         		/concentration/calculate = anon
         		/user/* = anon
         		/login = anon
+        		/risk/** = anon
         		/*.jar = anon
         		/** = authc
         		/*.* = authc

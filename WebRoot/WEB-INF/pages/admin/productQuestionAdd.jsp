@@ -13,66 +13,48 @@
    			<div class="row">
    			<div class="col-6">
 			<div class="form-group row">
-				<label for="customName" class="col-sm-2 col-form-label font-weight-bold">业主名称</label>
+				<label for="type" class="col-sm-2 col-form-label font-weight-bold">问题种类</label>
 				<div class="col-sm-5">
-					<input type="text" value="${globalPD.customName}" class="form-control " readonly="readonly" id="customName" name="customName" placeholder="业主名称">
+					<input type="text" class="form-control " id="type" name="type" placeholder="请输入问题种类">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="riskValue" class="col-sm-2 col-form-label font-weight-bold">风险值</label>
+				<label for="max" class="col-sm-2 col-form-label font-weight-bold">最大值</label>
 				<div class="col-sm-5">
-					<input type="text" value="${globalPD.riskValue}" class="form-control " id="riskValue" name="riskValue"  placeholder="风险值">
+					<input type="text" class="form-control " id="max" name="max"  placeholder="请输入最大值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="riskValue" class="col-sm-2 col-form-label font-weight-bold">产品问题</label>
+				<label for="min" class="col-sm-2 col-form-label font-weight-bold">最小值</label>
 				<div class="col-sm-5">
-					<input type="text"  class="form-control " id="type" name="type"  placeholder="产品问题">
-				</div>
-			</div>
-			<%-- <div class="form-group row">
-				<label for="avg" class="col-sm-1 col-form-label font-weight-bold">平均值</label>
-				<div class="col-sm-3">
-					<input type="text" value="${globalPD.avg}" class="form-control " id="avg" name="avg"   placeholder="平均值">
+					<input type="text"  class="form-control " id="min" name="min"  placeholder="请输入最小值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="std" class="col-sm-1 col-form-label font-weight-bold">标准差</label>
-				<div class="col-sm-3">
-					<input type="text" value="${globalPD.std}" class="form-control " id="std" name="std"  placeholder="标准差">
+				<label for="avg" class="col-sm-2 col-form-label font-weight-bold">平均值</label>
+				<div class="col-sm-5">
+					<input type="text"  class="form-control " id="avg" name="avg"  placeholder="请输入平均值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="max" class="col-sm-1 col-form-label font-weight-bold">终值</label>
-				<div class="col-sm-3">
-					<input type="text" value="${globalPD.max}" class="form-control " id="max" name="max"  placeholder="终值">
+				<label for="std" class="col-sm-2 col-form-label font-weight-bold">标准差</label>
+				<div class="col-sm-5">
+					<input type="text"  class="form-control " id="std" name="std"  placeholder="请输入标准差值,默认为0">
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="max" class="col-sm-1 col-form-label font-weight-bold">最小值</label>
-				<div class="col-sm-3">
-					<input type="text" value="${globalPD.min}" class="form-control " id="min" name="min"  placeholder="最小值">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="riskValue" class="col-sm-1 col-form-label font-weight-bold">风险值</label>
-				<div class="col-sm-3">
-					<input type="text" value="${globalPD.riskValue}" class="form-control " id="riskValue" name="riskValue"  placeholder="风险值">
-				</div>
-			</div> --%>
 			</div>
 			<div class="col-5">
-				<img alt=""  class="img-thumbnail" src="" id="headerImg" name="headerImg" style="height: 200px;width: 400px" >
+				<img alt=""  class="img-thumbnail" src="" id="pdImg" name="pdImg" style="height: 260px;width: 400px" >
 			</div>
 			</div>
 			<div class="form-group row">
-				<label for="description" class="col-sm-1 col-form-label font-weight-bold">不良性状描述</label>
+				<label for="description" class="col-sm-1 col-form-label font-weight-bold">性状描述</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" id="description" name="description" rows="3"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="reason" class="col-sm-1 col-form-label font-weight-bold">不良原因说明</label>
+				<label for="reason" class="col-sm-1 col-form-label font-weight-bold">原因说明</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" id="reason" name="reason" rows="3"></textarea>
 				</div>
@@ -80,7 +62,7 @@
 			<div class="form-group row">
 				<label for="imgurl" class="col-sm-1 col-form-label font-weight-bold">不良照片</label>
 				<div class="col-sm-3">
-					<input type="file" class="form-control" id="header" name="header" placeholder="头像" onchange="showPreHeaderImg(this)">
+					<input type="file" class="form-control" id="questionImg" name="questionImg" placeholder="不良图片" onchange="showPrepdImg(this)">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -91,12 +73,12 @@
 		</form>
    	</div>
    	<script type="text/javascript">
-  	function showPreHeaderImg(source){
+  	function showPrepdImg(source){
   		var file = source.files[0];
   		if (window.FileReader){
   			var fileReader = new FileReader();
   			fileReader.onloadend = function(e){
-  				document.getElementById("headerImg").src = e.target.result;
+  				document.getElementById("pdImg").src = e.target.result;
   			};
   			fileReader.readAsDataURL(file);
   		}

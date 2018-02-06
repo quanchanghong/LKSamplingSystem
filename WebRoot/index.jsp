@@ -88,7 +88,7 @@
 					<div class="card-header bg-danger text-white">风险值</div>
   					<div class="card-body">
     					<p class="card-text" style="height: 150px">风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值风险值介绍</p>
-    					<a href="#" class="btn btn-danger" style="width: 100%">查询</a>
+    					<a href="${pageContext.request.contextPath}/risk" class="btn btn-danger" style="width: 100%">查询</a>
   					</div>
 				</div>
 				<div class="card text-center border-warning" style="height: 300px">

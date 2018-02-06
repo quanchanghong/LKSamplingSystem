@@ -30,7 +30,7 @@
          		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/industry">产业管理</a>
          		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/ais">关系管理</a>
          		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/riskSpecies">业主物种管理</a>
-         		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/question">产品不良管理</a>
+         		 	<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/question">不良问题管理</a>
         		</div>
         		</shior:hasRole>
       		</li>

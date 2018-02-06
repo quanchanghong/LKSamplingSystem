@@ -34,7 +34,7 @@ public class BaseSpecies implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(targetEntity=AISCP.class, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(targetEntity=AISCP.class, cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="baseSpeciesId", referencedColumnName="id")
 	private Set<AISCP> AISCPSet = new HashSet<AISCP>();
 	
