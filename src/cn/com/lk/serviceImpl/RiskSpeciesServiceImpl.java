@@ -57,7 +57,7 @@ public class RiskSpeciesServiceImpl extends BaseServiceImpl<BaseSpecies> impleme
 		if (riskValue > productQuestion.getMax()){
 			productQuestion.setMax(riskValue);
 		}
-		if (riskValue < productQuestion.getMin()){
+		if ((riskValue < productQuestion.getMin()) || (productQuestion.getMin() == 0d)){
 			productQuestion.setMin(riskValue);
 		}
 		

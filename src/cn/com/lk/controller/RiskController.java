@@ -38,7 +38,19 @@ public class RiskController {
 	@RequestMapping(value="/onepd", produces="application/json;charset=utf-8")
 	public String getOneProductQuestion(@RequestParam String pdId){
 		ProductQuestion pd = riskService.getById(ProductQuestion.class, Integer.parseInt(pdId));
+		pd.setAvg(0d);
+		pd.setStd(0d);
+		pd.setMax(0d);
+		pd.setMin(0d);
 		return JSON.toJSONString(pd);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/riskResult", produces="application/text;charset=utf-8")
+	public String getRiskResult(@RequestParam String pdId, @RequestParam String riskValue) throws Exception{
+		String msg = riskService.getRiskResult(Integer.parseInt(pdId), Double.parseDouble(riskValue));
+		System.out.println(msg);
+		return msg;
 	}
 
 }

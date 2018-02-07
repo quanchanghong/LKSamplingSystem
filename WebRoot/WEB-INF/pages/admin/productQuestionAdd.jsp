@@ -21,25 +21,25 @@
 			<div class="form-group row">
 				<label for="max" class="col-sm-2 col-form-label font-weight-bold">最大值</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control " id="max" name="max"  placeholder="请输入最大值,默认为0">
+					<input type="number" class="form-control " id="max" name="max"  placeholder="请输入最大值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="min" class="col-sm-2 col-form-label font-weight-bold">最小值</label>
 				<div class="col-sm-5">
-					<input type="text"  class="form-control " id="min" name="min"  placeholder="请输入最小值,默认为0">
+					<input type="number"  class="form-control " id="min" name="min"  placeholder="请输入最小值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="avg" class="col-sm-2 col-form-label font-weight-bold">平均值</label>
 				<div class="col-sm-5">
-					<input type="text"  class="form-control " id="avg" name="avg"  placeholder="请输入平均值,默认为0">
+					<input type="number"  class="form-control " id="avg" name="avg"  placeholder="请输入平均值,默认为0">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="std" class="col-sm-2 col-form-label font-weight-bold">标准差</label>
 				<div class="col-sm-5">
-					<input type="text"  class="form-control " id="std" name="std"  placeholder="请输入标准差值,默认为0">
+					<input type="number"  class="form-control " id="std" name="std"  placeholder="请输入标准差值,默认为0">
 				</div>
 			</div>
 			</div>

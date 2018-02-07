@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import org.junit.Test;
+
+import cn.com.lk.utils.Encrypt;
+
 public class MYSQLTest {
 	private String mysqlurl = "jdbc:mysql://localhost/lk_sampling";
 	private String mysqlpassword = "12345678";
@@ -19,4 +23,10 @@ public class MYSQLTest {
 		mysqlpstmt.close();
 		mysqlconn.close();
 	}
+	
+	@Test
+	public void testPassword(){
+		System.out.println(Encrypt.SHA256("yang"));
+	}
+	
 }
