@@ -134,7 +134,7 @@ public class ConcentrationServiceImpl extends BaseServiceImpl<Concentration> imp
             if (m < n){
             	percent = (list.get(m) / totalArea) * 100;//计算百分比
             }else{
-            	percent = -1.00;
+            	percent = 100;//当输入的浓度大于final值时浓度排名为百分之百
             }
 		}
 		return percent;
