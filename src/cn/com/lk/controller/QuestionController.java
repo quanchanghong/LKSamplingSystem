@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import cn.com.lk.constant.PageConstant;
+import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.service.QuestionService;
@@ -29,6 +30,13 @@ public class QuestionController {
 		Page<ProductQuestion> questionPage = questionService.getOnePage(ProductQuestion.class, page.getCurrentPage(), PageConstant.ONE_PAGE_SIZE);
 		model.addAttribute("questionPage", questionPage);
 		
+		return "admin/productQuestions";
+	}
+	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam String questionName, Model model) throws Exception{
+		Page<ProductQuestion> questionPage = questionService.searchByName(questionName);
+		model.addAttribute("questionPage", questionPage);
 		return "admin/productQuestions";
 	}
 	

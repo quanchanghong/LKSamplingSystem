@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.com.lk.constant.RealmConstant;
+import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.service.IndustryService;
@@ -23,6 +24,13 @@ public class IndustryController {
 	@RequiresRoles(value=RealmConstant.SYSTEM_ROLE_TYPE_ADMIN)
 	public String list(Page<Industry> page,Model model){
 		Page<Industry> onePage = industryService.getOnePage(Industry.class, page.getCurrentPage(), page.getPageSize());
+		model.addAttribute("onePage", onePage);
+		return "admin/industry";
+	}
+	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam String industryName, Model model) throws Exception{
+		Page<Industry> onePage = industryService.searchByName(industryName);
 		model.addAttribute("onePage", onePage);
 		return "admin/industry";
 	}

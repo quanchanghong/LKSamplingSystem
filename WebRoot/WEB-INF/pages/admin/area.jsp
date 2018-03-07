@@ -8,7 +8,13 @@
   <body>
   	<div class="container">
   		<div>
-  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/area/add">添加</a>
+  			<nav class="navbar navbar-light bg-light justify-content-between">
+  				<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/area/add">添加</a>
+  				<form class="form-inline" action="${pageContext.request.contextPath}/admin/area/search" method="post">
+    				<input class="form-control mr-sm-2" type="search" id="areaName" name="areaName" placeholder="请输入区域名称" aria-label="搜索">
+    				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+  				</form>
+			</nav>
   		</div>
   		<div>
 		<table class="table table-bordered">

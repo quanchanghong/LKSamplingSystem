@@ -22,6 +22,7 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import cn.com.lk.constant.ConcentrationConstant;
 import cn.com.lk.constant.PageConstant;
 import cn.com.lk.pojo.AISCP;
+import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.BaseSpecies;
 import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.ProductQuestion;
@@ -43,6 +44,13 @@ public class RiskSpeciesController {
 	public String showRiskSpecies(Page<BaseSpecies> page, Model model) throws Exception{
 		
 		Page<BaseSpecies> baseSpeciesPage = riskSpeciesService.getOnePage(BaseSpecies.class, page.getCurrentPage(), PageConstant.ONE_PAGE_SIZE);
+		model.addAttribute("baseSpeciesPage", baseSpeciesPage);
+		return "admin/baseSpecies";
+	}
+	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam String baseSpeciesName, Model model) throws Exception{
+		Page<BaseSpecies> baseSpeciesPage = riskSpeciesService.searchByName(baseSpeciesName);
 		model.addAttribute("baseSpeciesPage", baseSpeciesPage);
 		return "admin/baseSpecies";
 	}

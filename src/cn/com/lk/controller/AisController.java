@@ -72,6 +72,13 @@ public class AisController {
 		return "redirect:/admin/ais";
 	}
 	
+	@RequestMapping(value="/search")
+	public String search(@RequestParam String speciesName, Model model) throws Exception{
+		Page<AIS> onePage = aisService.searchByName(speciesName);
+		model.addAttribute("onePage", onePage);
+		return "admin/ais";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/checkBeforeSave")
 	public String checkBeforeSave(@RequestParam String areaId, @RequestParam String industryId, @RequestParam String speciesId) throws Exception{

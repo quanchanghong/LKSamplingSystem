@@ -2,10 +2,12 @@ package cn.com.lk.daoImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import cn.com.lk.dao.AisDao;
 import cn.com.lk.pojo.AIS;
+import cn.com.lk.pojo.Page;
 
 @Repository("aisDao")
 public class AisDaoImpl extends BaseDaoImpl<AIS> implements AisDao {
@@ -18,6 +20,23 @@ public class AisDaoImpl extends BaseDaoImpl<AIS> implements AisDao {
 			return 1;
 		}
 		return 0;
+	}
+
+	@Override
+	public Page<AIS> searchByName(String speciesName) {
+		
+		Page<AIS> page = new Page<AIS>();
+		String sql = "from AIS where species.speciesName like '%" + speciesName + "%' or name like '%" + speciesName + "%'";
+		List<AIS> list = this.getCurrentSession().createQuery(sql).list();
+		
+		page.setCurrentPage(1);
+		page.setPageSize(50);
+		page.setPageTotal(list.size());
+		
+		if (list != null && list.size() >0){
+			page.setList(list);
+		}
+		return page;
 	}
 
 }

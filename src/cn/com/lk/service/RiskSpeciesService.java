@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import cn.com.lk.pojo.AISCP;
 import cn.com.lk.pojo.BaseSpecies;
+import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.ProductQuestion;
 
 public interface RiskSpeciesService extends BaseService<BaseSpecies> {
@@ -13,5 +14,7 @@ public interface RiskSpeciesService extends BaseService<BaseSpecies> {
 	Integer SaveCustomSpeciesWithRisk(ProductQuestion pd, BaseSpecies baseSpecies, List<AISCP> aISCPList) throws Exception;
 
 	void deleteBaseSpecies(int parseInt) throws Exception;
+
+	Page<BaseSpecies> searchByName(String baseSpeciesName) throws Exception;
 
 }

@@ -13,6 +13,7 @@ import cn.com.lk.dao.AisDao;
 import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Area;
 import cn.com.lk.pojo.Industry;
+import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.Species;
 import cn.com.lk.service.AisService;
 
@@ -49,6 +50,11 @@ public class AisServiceImpl extends BaseServiceImpl<AIS> implements AisService {
 	@Override
 	public Integer queryAisBeforeSave(AIS ais) throws Exception {
 		return aisDao.queryAisBeforeSave(ais);
+	}
+
+	@Override
+	public Page<AIS> searchByName(String speciesName) throws Exception {
+		return aisDao.searchByName(speciesName);
 	}
 	
 }

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.lk.dao.AreaDao;
+import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Area;
+import cn.com.lk.pojo.Page;
 import cn.com.lk.service.AreaService;
 
 @Transactional
@@ -20,6 +22,11 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
 	@Override
 	public List<Area> getAll() {
 		return areaDao.getAll();
+	}
+
+	@Override
+	public Page<Area> searchByName(String areaName) throws Exception {
+		return areaDao.searchByName(areaName);
 	}
 
 }

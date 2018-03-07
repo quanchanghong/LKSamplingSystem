@@ -8,7 +8,13 @@
   <body>
   	<div class="container_fulid" style="margin-left: 40px; margin-right: 40px;">
   		<div>
-  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/question/add">添加</a>
+  			<nav class="navbar navbar-light bg-light justify-content-between">
+  				<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/question/add">添加</a>
+  				<form class="form-inline" action="${pageContext.request.contextPath}/admin/question/search" method="post">
+    				<input class="form-control mr-sm-2" type="search" id="questionName" name="questionName" placeholder="请输入问题种类" aria-label="搜索">
+    				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+  				</form>
+			</nav>
   		</div>
   		<div>
   			<table class="table table-bordered ">

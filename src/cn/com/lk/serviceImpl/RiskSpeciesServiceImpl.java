@@ -17,6 +17,7 @@ import cn.com.lk.dao.QuestionDao;
 import cn.com.lk.dao.RiskSpeciesDao;
 import cn.com.lk.pojo.AISCP;
 import cn.com.lk.pojo.BaseSpecies;
+import cn.com.lk.pojo.Page;
 import cn.com.lk.pojo.ProductQuestion;
 import cn.com.lk.service.RiskSpeciesService;
 import cn.com.lk.utils.ConcentrationUtils;
@@ -87,6 +88,11 @@ public class RiskSpeciesServiceImpl extends BaseServiceImpl<BaseSpecies> impleme
 		baseSpecies.setAISCPSet(null);
 		riskSpeciesDao.save(baseSpecies);
 		riskSpeciesDao.deleteById(BaseSpecies.class, id);
+	}
+
+	@Override
+	public Page<BaseSpecies> searchByName(String baseSpeciesName) throws Exception {
+		return riskSpeciesDao.searchByName(baseSpeciesName);
 	}
 
 }

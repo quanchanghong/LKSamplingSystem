@@ -61,4 +61,9 @@ public class QuestionServiceImpl extends BaseServiceImpl<ProductQuestion> implem
 			//EhcacheUtils.getCacheByName(EhcacheConstant.CACHE_NAME_USER).removeElement(EhcacheUtils.getElementByName(EhcacheConstant.CACHE_NAME_USER, EhcacheConstant.ELEMENT_NAME_ALL_PRODUCTQUESTION));
 		}
 	}
+
+	@Override
+	public Page<ProductQuestion> searchByName(String questionName) throws Exception {
+		return questionDao.searchByName(questionName);
+	}
 }

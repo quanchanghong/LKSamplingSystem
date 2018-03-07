@@ -11,7 +11,13 @@
   			<input type="hidden" id="msg" value="${msgcode}">
   		</div>
   		<div>
-  			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/ais/add">添加</a>
+  			<nav class="navbar navbar-light bg-light justify-content-between">
+  				<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/ais/add">添加</a>
+  				<form class="form-inline" action="${pageContext.request.contextPath}/admin/ais/search" method="post">
+    				<input class="form-control mr-sm-2" type="search" id="speciesName" name="speciesName" placeholder="请输入物种" aria-label="搜索">
+    				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+  				</form>
+			</nav>
   		</div>
   		<div>
   			<table class="table table-bordered">
@@ -41,7 +47,7 @@
   						<td>${ais.finalValue}</td>
   						
   						<td width="15%">
-  							<a  class="btn btn-success " title="123" href="${pageContext.request.contextPath }/admin/ais/edit?id=${ais.id}" style="height: 30px; padding-top: 1px;">编辑</a>
+  							<a  class="btn btn-success " title="编辑" href="${pageContext.request.contextPath }/admin/ais/edit?id=${ais.id}" style="height: 30px; padding-top: 1px;">编辑</a>
   							<a  class="btn btn-danger "  href="${pageContext.request.contextPath }/admin/ais/delete?id=${ais.id}"  style="height: 30px; padding-top: 1px;">删除</a>
   						</td>
   					</tr>
