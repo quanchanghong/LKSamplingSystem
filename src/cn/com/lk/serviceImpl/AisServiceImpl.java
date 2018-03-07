@@ -45,5 +45,10 @@ public class AisServiceImpl extends BaseServiceImpl<AIS> implements AisService {
 		
 		return map;
 	}
+
+	@Override
+	public Integer queryAisBeforeSave(AIS ais) throws Exception {
+		return aisDao.queryAisBeforeSave(ais);
+	}
 	
 }

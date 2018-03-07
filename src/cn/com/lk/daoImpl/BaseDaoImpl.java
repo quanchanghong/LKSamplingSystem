@@ -106,19 +106,18 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public List<Species> getAllSpecies() throws Exception {
 		
-		return this.getCurrentSession().createQuery("from Species").list();
+		return this.getCurrentSession().createQuery("from Species order by speciesName asc").list();
 	}
 
 	@Override
 	public List<Area> getAllArea() throws Exception {
-		// TODO Auto-generated method stub
-		return this.getCurrentSession().createQuery("from Area").list();
+		return this.getCurrentSession().createQuery("from Area order by areaName asc").list();
 	}
 
 	@Override
 	public List<Industry> getAllIndustry() throws Exception {
 		// TODO Auto-generated method stub
-		return this.getCurrentSession().createQuery("from Industry").list();
+		return this.getCurrentSession().createQuery("from Industry order by industryName asc").list();
 	}
 
 	@Override

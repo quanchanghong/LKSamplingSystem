@@ -9,7 +9,7 @@
   
   <body>
    	<div class="container">
-   		<form action="${pageContext.request.contextPath}/admin/ais/save" method="post">
+   		<form action="${pageContext.request.contextPath}/admin/ais/save" method="post" onsubmit="return checkBeforeSave()">
 			<div class="form-group row">
 				<label for="name" class="col-sm-1 col-form-label font-weight-bold">名称</label>
 				<div class="col-sm-3">
@@ -76,4 +76,32 @@
 		</form>
    	</div>
   </body>
+  <script type="text/javascript">
+  
+  function checkBeforeSave(){
+  		var areaId = $("#areaId").val();
+		var speciesId = $("#speciesId").val();
+		var industryId = $("#industryId").val();
+		var canSumbit = true;
+		
+  		$.ajax({
+   			url:"/sampling/admin/ais/checkBeforeSave",
+   			async:false,
+   			type:"post",
+   			data:{"areaId":areaId,"speciesId":speciesId,"industryId":industryId},
+   			success:function(data){
+   				
+   				if (data > 0){
+   					canSumbit = false;
+   					alert("你所添加的物种在后台已经存在，无法添加，只能修改！");
+   				}
+   			}
+   		});
+  	return canSumbit;
+  }
+  
+  	$(document).ready(function(){
+  	
+  	});
+  </script>
 </html>

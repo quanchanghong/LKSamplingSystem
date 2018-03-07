@@ -26,10 +26,10 @@ public class BaseController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/radar")
+	/*@RequestMapping(value="/radar")
 	public String showRadar(Model model){
-		return "user/radar";
-	}
+		return "user/radar_new";
+	}*/
 	
 	
 	

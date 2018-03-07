@@ -8,4 +8,6 @@ public interface AisService extends BaseService<AIS> {
 
 	Map<String, Object> getAisEditMap(Integer id) throws Exception;
 
+	Integer queryAisBeforeSave(AIS ais) throws Exception;
+
 }

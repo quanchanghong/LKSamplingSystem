@@ -12,7 +12,7 @@
     		<div class="" style="margin-left: 100px;">
     			<div>
     				<span>
-    					<button class="btn btn-success" id="btn_add">添加</button>
+    					<button class="btn btn-success" id="btn_add">添加old</button>
     					<button class="btn btn-danger" id="btn_del">删除</button>
     					<button class="btn btn-info" id="btn_query">查询风险系数</button>
     					<!-- <button class="btn btn-info" id="btn_test">测试</button> -->
@@ -54,8 +54,8 @@
 					</form>
 				</div>
     		</div>
-    		<div class="col" style="margin-right: 100px">
-				<div class="right_container" id="radar" style="height: 500px; width: 1200px">
+    		<div class="">
+				<div class="right_container" id="radar" style="height: 60%; width: 60%;">
 				</div>
 			</div>
     	</div>

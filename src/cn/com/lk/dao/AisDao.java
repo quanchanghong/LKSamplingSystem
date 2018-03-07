@@ -4,4 +4,6 @@ import cn.com.lk.pojo.AIS;
 
 public interface AisDao extends BaseDao<AIS> {
 
+	Integer queryAisBeforeSave(AIS ais);
+
 }

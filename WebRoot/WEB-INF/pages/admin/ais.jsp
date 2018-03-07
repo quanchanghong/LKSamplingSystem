@@ -7,6 +7,9 @@
   </head>
   <body>
   	<div class="container">
+  		<div id="msgDiv">
+  			<input type="hidden" id="msg" value="${msgcode}">
+  		</div>
   		<div>
   			<a class="btn btn-success" href="${pageContext.request.contextPath}/admin/ais/add">添加</a>
   		</div>
@@ -64,4 +67,13 @@
 		</nav>
 	</div>
   </body>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		var msg = $("#msg").val();
+  		if (msg.length > 1){
+  			$("#msg").val("");
+  			alert(msg);
+  		}
+  	});
+  </script>
 </html>
