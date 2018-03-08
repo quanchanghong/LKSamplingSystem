@@ -7,4 +7,6 @@ public interface IndustryDao extends BaseDao<Industry> {
 
 	Page<Industry> searchByName(String industryName);
 
+	int checkByName(String speciesName);
+
 }

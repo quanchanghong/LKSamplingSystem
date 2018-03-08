@@ -28,5 +28,11 @@ public class IndustryDaoImpl extends BaseDaoImpl<Industry> implements IndustryDa
 		return page;
 	}
 
+	@Override
+	public int checkByName(String industryName) {
+		
+		return this.getCurrentSession().createQuery("from Industry where industryName='" + industryName + "'").list().size();
+	}
+
 
 }

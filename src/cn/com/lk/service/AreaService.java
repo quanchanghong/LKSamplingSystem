@@ -11,6 +11,8 @@ public interface AreaService extends BaseService<Area>{
 	List<Area> getAll();
 
 	Page<Area> searchByName(String areaName) throws Exception;
+	
+	int checkByName(String name);
 
 	//Page<Area> getOneAreaPage(Class<Area> class1, int i, int j);
 

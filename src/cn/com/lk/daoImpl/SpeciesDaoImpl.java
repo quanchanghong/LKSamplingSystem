@@ -28,4 +28,10 @@ public class SpeciesDaoImpl extends BaseDaoImpl<Species> implements speciesDao {
 		return page;
 	}
 
+	@Override
+	public int checkByName(String name) {
+		
+		return this.getCurrentSession().createQuery("from Species where speciesName='" + name + "'").list().size();
+	}
+
 }

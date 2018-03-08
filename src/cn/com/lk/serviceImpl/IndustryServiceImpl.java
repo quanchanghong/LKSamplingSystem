@@ -23,4 +23,9 @@ public class IndustryServiceImpl extends BaseServiceImpl<Industry> implements In
 		return industryDao.searchByName(industryName);
 	}
 
+	@Override
+	public int checkByName(String industryName) {
+		return industryDao.checkByName(industryName);
+	}
+
 }

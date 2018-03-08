@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.lk.constant.RealmConstant;
 import cn.com.lk.pojo.AIS;
 import cn.com.lk.pojo.Area;
+import cn.com.lk.pojo.Industry;
 import cn.com.lk.pojo.Page;
+import cn.com.lk.pojo.Species;
 import cn.com.lk.service.AreaService;
 
 @Controller
@@ -33,6 +36,13 @@ public class AreaController {
 		Page<Area> onePage = areaService.searchByName(areaName);
 		model.addAttribute("onePage", onePage);
 		return "admin/area";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkBeforeSave")
+	public String checkBeforeSave(@RequestParam String areaName) throws Exception{
+		
+		return String.valueOf(areaService.checkByName(areaName));
 	}
 	
 	@RequestMapping(value="/delete")

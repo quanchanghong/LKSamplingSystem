@@ -9,7 +9,7 @@
   
   <body>
    	<div class="container">
-   		<form action="${pageContext.request.contextPath}/admin/question/save" method="post" enctype="multipart/form-data">
+   		<form action="${pageContext.request.contextPath}/admin/question/save" method="post" enctype="multipart/form-data" onsubmit="return checkBeforeSave()">
    			<div class="row">
    			<div class="col-6">
 			<div class="form-group row">
@@ -89,4 +89,26 @@
   	
   </script>
   </body>
+  <script type="text/javascript">
+  
+  function checkBeforeSave(){
+  		var type = $("#type").val();
+		var canSumbit = true;
+		
+  		 $.ajax({
+   			url:"/sampling/admin/question/checkBeforeSave",
+   			async:false,
+   			type:"post",
+   			data:{"type":type},
+   			success:function(data){
+   				
+   				if (data > 0){
+   					canSumbit = false;
+   					alert("你所添加的问题种类在后台已经存在，无法添加，只能修改！");
+   				}
+   			}
+   		}); 
+  	return canSumbit;
+  }
+  </script>
 </html>

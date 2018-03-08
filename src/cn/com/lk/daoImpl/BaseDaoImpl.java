@@ -177,7 +177,4 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 		return this.getCurrentSession().get(clazz, id);
 	}
 
-	
-
-
 }

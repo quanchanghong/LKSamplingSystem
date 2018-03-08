@@ -11,5 +11,7 @@ public interface QuestionService extends BaseService<ProductQuestion> {
 	void saveWithMultipartFile(MultipartFile pdImgFile,MultipartHttpServletRequest multipartRequest, ProductQuestion pd) throws Exception;
 
 	Page<ProductQuestion> searchByName(String questionName) throws Exception;
+	
+	int checkByName(String name);
 
 }

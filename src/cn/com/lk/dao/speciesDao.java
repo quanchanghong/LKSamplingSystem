@@ -7,4 +7,6 @@ public interface speciesDao extends BaseDao<Species> {
 
 	Page<Species> searchByName(String speciesName);
 
+	int checkByName(String name);
+
 }

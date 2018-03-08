@@ -7,4 +7,6 @@ public interface QuestionDao extends BaseDao<ProductQuestion> {
 
 	Page<ProductQuestion> searchByName(String questionName);
 
+	int checkByName(String name);
+
 }

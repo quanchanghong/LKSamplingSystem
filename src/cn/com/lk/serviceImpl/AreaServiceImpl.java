@@ -29,4 +29,9 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
 		return areaDao.searchByName(areaName);
 	}
 
+	@Override
+	public int checkByName(String name) {
+		return areaDao.checkByName(name);
+	}
+
 }

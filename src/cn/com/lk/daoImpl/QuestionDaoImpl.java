@@ -34,5 +34,11 @@ public class QuestionDaoImpl extends BaseDaoImpl<ProductQuestion> implements Que
 		return page;
 	}
 
+	@Override
+	public int checkByName(String name) {
+		
+		return this.getCurrentSession().createQuery("from ProductQuestion where type='" + name + "'").list().size();
+	}
+
 
 }

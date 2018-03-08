@@ -9,7 +9,7 @@
   
   <body>
    	<div class="container">
-   		<form action="${pageContext.request.contextPath}/admin/industry/save" method="post">
+   		<form action="${pageContext.request.contextPath}/admin/industry/save" method="post" onsubmit="return checkBeforeSave()">
 			<div class="form-group row">
 				<label for="name" class="col-sm-1 col-form-label font-weight-bold">产业名称</label>
 				<div class="col-sm-3">
@@ -26,4 +26,26 @@
 		</form>
    	</div>
   </body>
+  <script type="text/javascript">
+  
+  function checkBeforeSave(){
+  		var industryName = $("#industryName").val();
+		var canSumbit = true;
+		
+  		 $.ajax({
+   			url:"/sampling/admin/industry/checkBeforeSave",
+   			async:false,
+   			type:"post",
+   			data:{"industryName":industryName},
+   			success:function(data){
+   				
+   				if (data > 0){
+   					canSumbit = false;
+   					alert("你所添加的产业在后台已经存在，无法添加，只能修改！");
+   				}
+   			}
+   		}); 
+  	return canSumbit;
+  }
+  </script>
 </html>

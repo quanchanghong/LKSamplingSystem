@@ -110,6 +110,8 @@
         		/admin/ = anon
         		/admin/login = anon
         		/admin/checkBeforeSave = anon
+        		/admin/*/checkBeforeSave=anon
+        		
         		/user/login = anon
         		/concentration/calculate = anon
         		/user/* = anon

@@ -7,4 +7,6 @@ public interface IndustryService extends BaseService<Industry> {
 
 	Page<Industry> searchByName(String industryName) throws Exception;
 
+	int checkByName(String speciesName) throws Exception;
+
 }

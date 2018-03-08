@@ -66,4 +66,9 @@ public class QuestionServiceImpl extends BaseServiceImpl<ProductQuestion> implem
 	public Page<ProductQuestion> searchByName(String questionName) throws Exception {
 		return questionDao.searchByName(questionName);
 	}
+
+	@Override
+	public int checkByName(String name) {
+		return questionDao.checkByName(name);
+	}
 }

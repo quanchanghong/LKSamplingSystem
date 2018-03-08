@@ -23,4 +23,9 @@ public class SpeciesServiceImpl extends BaseServiceImpl<Species> implements Spec
 		return speciesDao.searchByName(speciesName);
 	}
 
+	@Override
+	public int checkByName(String name) {
+		return speciesDao.checkByName(name);
+	}
+
 }

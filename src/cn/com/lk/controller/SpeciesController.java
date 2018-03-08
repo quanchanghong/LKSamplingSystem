@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.lk.constant.RealmConstant;
 import cn.com.lk.pojo.Area;
@@ -33,6 +34,13 @@ public class SpeciesController {
 		Page<Species> onePage = speciesService.searchByName(speciesName);
 		model.addAttribute("onePage", onePage);
 		return "admin/species";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkBeforeSave")
+	public String checkBeforeSave(@RequestParam String speciesName) throws Exception{
+		
+		return String.valueOf(speciesService.checkByName(speciesName));
 	}
 	
 	@RequestMapping(value="/delete")
