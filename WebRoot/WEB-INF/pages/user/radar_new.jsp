@@ -101,7 +101,7 @@
    		var concentration = $(obj).prop("value");
    		
    		$.ajax({
-   				url:"/sampling/concentration/calculate",
+   				url:"/concentration/calculate",
    				type:"post",
    				/* dataType:"json", */
    				data:{"areaId":areaId,"speciesId":speciesId,"industryId":industryId,"concentration":concentration},

@@ -33,7 +33,7 @@
 		var canSumbit = true;
 		
   		$.ajax({
-   			url:"/sampling/admin/area/checkBeforeSave",
+   			url:"/admin/area/checkBeforeSave",
    			async:false,
    			type:"post",
    			data:{"areaName":areaName},

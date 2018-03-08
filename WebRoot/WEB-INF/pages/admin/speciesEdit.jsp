@@ -33,7 +33,7 @@
 		var canSumbit = true;
 		
   		 $.ajax({
-   			url:"/sampling/admin/species/checkBeforeSave",
+   			url:"/admin/species/checkBeforeSave",
    			async:false,
    			type:"post",
    			data:{"speciesName":speciesName},

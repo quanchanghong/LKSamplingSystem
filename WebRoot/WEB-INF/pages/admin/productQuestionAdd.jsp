@@ -96,7 +96,7 @@
 		var canSumbit = true;
 		
   		 $.ajax({
-   			url:"/sampling/admin/question/checkBeforeSave",
+   			url:"/admin/question/checkBeforeSave",
    			async:false,
    			type:"post",
    			data:{"type":type},

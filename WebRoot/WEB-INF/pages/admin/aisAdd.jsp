@@ -85,7 +85,7 @@
 		var canSumbit = true;
 		
   		$.ajax({
-   			url:"/sampling/admin/ais/checkBeforeSave",
+   			url:"/admin/ais/checkBeforeSave",
    			async:false,
    			type:"post",
    			data:{"areaId":areaId,"speciesId":speciesId,"industryId":industryId},
